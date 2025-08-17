@@ -1,0 +1,665 @@
+# DBH REST with Jersey Training - Preparation Plan
+
+## Overview
+
+This document outlines the preparation plan for a 2-day REST API training
+focused on Jersey (plain Java) for DBH. The training emphasizes hands-on
+exercises with Jersey, REST fundamentals, security implementations, and Jackson
+for JSON processing.
+
+## Customer Requirements Summary
+
+Based on meeting notes with DBH and subsequent updates:
+
+1. **Primary Focus**: Plain Java with Jersey (not Spring Boot)
+1. **Target Java Version**: Java 8 (critical requirement from Daniel Morrison, Aug 4)
+1. **Participants**: Have basic HTTP knowledge but lack REST concepts
+1. **Duration**: 2 days with 1-2 hours Q&A at the end
+1. **Key Topics**: REST fundamentals, versioning, security, documentation
+1. **Exercises**: Extensive hands-on work with Jersey
+1. **Code Examples**: Will NOT be provided by participants (confirmed Aug 4)
+
+## Technical Prerequisites Update
+
+**Important Note**: Initial requirements sent to participants specified Java 21,
+but DBH confirmed they work on Java 8. All training materials will be Java 8
+compatible.
+
+### Updated Requirements for Participants
+
+1. **Java Development Kit 8** (not Java 21 as initially communicated)
+1. IntelliJ IDEA or comparable IDE with Java 8 support
+1. Gradle 8.5+ (backwards compatible with Java 8)
+1. REST Client (Postman, Insomnia, or similar)
+1. curl CLI installed
+1. Git for accessing training materials
+1. GitHub access for repository
+
+### Java 8 Compatibility Notes
+
+- Jersey 2.x (not 3.x which requires Java 11+)
+- Jackson 2.x versions compatible with Java 8
+- No use of Java 9+ features (modules, var keyword, etc.)
+- Lambda expressions and Stream API available but with Java 8 limitations
+
+## Training Agenda
+
+The detailed training agenda has been moved to [agenda.md](./agenda.md) for better
+organization and easier sharing with participants.
+
+## Preparation Timeline
+
+### Week 1: Research & Planning (5 days)
+
+1. **Day 1-2: Technical Research**
+
+   - Jersey best practices and patterns
+   - Jersey vs Spring Boot comparison
+   - REST API versioning approaches
+   - Security implementation patterns
+
+1. **Day 3: Training Materials Research**
+
+   - Analyze existing Jersey trainings
+   - Review enterprise REST patterns
+   - Study adult learning principles
+
+1. **Day 4: Customer Alignment**
+
+   - Create generic enterprise examples (no participant code available)
+   - Finalize agenda with customer
+   - Adjust based on skill levels
+   - Focus on common Java 8 enterprise patterns
+
+1. **Day 5: Planning Finalization**
+   - Create detailed module outlines
+   - Plan exercise progression
+   - Set up development environment
+
+### Week 2-3: Content Development (10 days)
+
+1. **Days 1-3: Day 1 Content**
+
+   - REST fundamentals slides
+   - Jersey introduction materials
+   - Basic exercises and solutions
+   - Versioning implementation guide
+
+1. **Days 4-5: Day 2 Content**
+
+   - Jackson integration slides
+   - Security implementation guides
+   - Advanced exercises
+   - Showcase preparations
+
+1. **Days 6-8: Exercise Development**
+
+   - Progressive Jersey exercises
+   - Security scenarios
+   - Integration challenges
+   - Final project specification
+
+1. **Days 9-10: Supporting Materials**
+   - Setup instructions
+   - Reference guides
+   - Troubleshooting guide
+   - Additional resources
+
+### Week 4: Review & Refinement (5 days)
+
+1. **Days 1-2: Content Review**
+
+   - Technical accuracy check
+   - Exercise testing
+   - Time allocation verification
+
+1. **Day 3: Dry Run Day 1**
+
+   - Practice delivery
+   - Timing adjustments
+   - Exercise validation
+
+1. **Day 4: Dry Run Day 2**
+
+   - Security demos
+   - Complex exercises
+   - Q&A preparation
+
+1. **Day 5: Final Preparation**
+   - Material packaging
+   - Environment setup
+   - Backup preparations
+
+## Research Tasks
+
+### Technical Research
+
+1. **Jersey Framework (Java 8 Compatible)**
+
+   - Jersey 2.x features (2.35 or 2.39 for Java 8)
+   - Best practices for enterprise Java 8 environments
+   - Common patterns and anti-patterns
+   - Performance optimization for Java 8
+
+1. **Jersey vs Spring Boot**
+
+   - Detailed comparison matrix
+   - Use case scenarios
+   - Migration considerations
+   - Pros and cons analysis
+
+1. **REST API Versioning**
+
+   - Industry standards
+   - Real-world examples
+   - Implementation strategies
+   - Version deprecation
+
+1. **Security Implementations (Java 8)**
+   - JWT in Jersey with Java 8 compatible libraries
+   - OAuth2 integration for Java 8
+   - API key patterns
+   - Certificate authentication in Java 8
+
+### Training Methodology Research
+
+1. **Existing Trainings Analysis**
+
+   - Jersey-specific courses
+   - REST API workshops
+   - Enterprise training formats
+   - Success metrics
+
+1. **Adult Learning Principles**
+   - Hands-on learning effectiveness
+   - Knowledge retention strategies
+   - Exercise design patterns
+   - Feedback mechanisms
+
+## Deliverables
+
+### Training Materials
+
+1. **Slide Decks**
+
+   - 8 comprehensive modules
+   - Code examples included
+   - Visual diagrams
+   - Progressive complexity
+
+1. **Exercise Workbooks**
+
+   - Step-by-step instructions
+   - Starter code templates
+   - Validation criteria
+   - Extension challenges
+
+1. **Instructor Guide**
+
+   - Detailed timing
+   - Key talking points
+   - Common questions
+   - Troubleshooting tips
+
+1. **Participant Materials**
+   - Setup instructions
+   - Reference sheets
+   - Resource links
+   - Post-training support
+
+### Code Repositories
+
+1. **Starter Projects**
+
+   - Basic Jersey setup
+   - Exercise templates
+   - Configuration examples
+
+1. **Solution Repository**
+
+   - Complete solutions
+   - Alternative approaches
+   - Best practice examples
+
+1. **Showcase Projects**
+   - Security demonstrations
+   - OpenAPI integration
+   - Client certificate setup
+
+## Success Metrics
+
+1. **Pre-Training**
+
+   - Environment setup success rate
+   - Participant preparedness
+   - Code example quality
+
+1. **During Training**
+
+   - Exercise completion rates
+   - Question engagement
+   - Concept understanding
+
+1. **Post-Training**
+   - Participant satisfaction
+   - Knowledge application
+   - Follow-up questions
+   - Real-world implementation
+
+## Risk Mitigation
+
+1. **Technical Risks**
+
+   - Multiple IDE setup guides
+   - Docker-based alternatives with Java 8
+   - Offline documentation
+   - Java version compatibility checks
+
+1. **Java 8 Compatibility Risks**
+
+   - Verify all libraries work with Java 8
+   - Test all code examples in Java 8 environment
+   - Prepare fallback for participants with Java 21
+   - Document Java 8 specific limitations
+
+1. **Timing Risks**
+
+   - Buffer time in schedule
+   - Optional exercises
+   - Flexible Q&A allocation
+
+1. **Skill Level Risks**
+   - Basic and advanced tracks
+   - Peer programming options
+   - Additional resources
+   - No participant code examples - use generic patterns
+
+## Comprehensive Task List
+
+### Project Structure
+
+```
+dbh-rest-with-jackson/
+├── base-project/           # Starting point for participants
+├── exercises/             # Individual exercise modules (01-10)
+├── solutions/            # Complete solutions for instructors
+├── showcases/           # Demo-only materials
+├── slides/             # Presentation materials
+└── instructor-guide/   # Teaching notes and timing
+```
+
+### AI Model Strategy (Anthropic Max Plan)
+
+- **claude-3-opus (Opus 4.1)**: Complex tasks - architecture, security, advanced patterns, critical design
+- **claude-3-sonnet**: Everything else - standard exercises, documentation, basic implementations
+- **Multiple models**: Critical decisions requiring comparison
+- Note: With Max Plan, using Sonnet as minimum ensures quality for all tasks
+
+### PHASE 0: COMPREHENSIVE RESEARCH
+
+#### 0.1 Technology Research [3 hours]
+
+**Research Tasks** (Use Brave Search, Firecrawl, Context7):
+
+- [ ] Jersey 2.x Java 8 compatibility and best practices (Context7: /jersey/jersey)
+- [ ] Jackson 2.x with Java 8 patterns (Context7: /fasterxml/jackson)
+- [ ] Embedded server comparison: Jetty vs Grizzly
+- [ ] JWT libraries for Java 8 (jjwt vs java-jwt vs nimbus-jose-jwt)
+- [ ] REST API design patterns 2024/2025
+- [ ] Enterprise security patterns for REST APIs
+      **Tools**: Brave Search for articles, Firecrawl for docs, Context7 for library references
+      **Model**: claude-3-sonnet
+
+#### 0.2 Training Material Research [2 hours]
+
+**Research Tasks**:
+
+- [ ] Existing Jersey training materials and courses
+- [ ] REST API workshop structures
+- [ ] Adult learning principles for technical training
+- [ ] Hands-on exercise design patterns
+- [ ] Common pitfalls in REST API training
+      **Tools**: Brave Search for training resources, Firecrawl for course outlines
+      **Model**: claude-3-sonnet
+
+### PHASE 1: FOUNDATION (Critical Path - Sequential)
+
+Must be completed first in order. These form the foundation for all exercises.
+
+#### 1.1 Base Project Setup [4 hours]
+
+**Pre-task Research**:
+
+- [ ] Research Gradle configurations for Jersey 2.35 (Context7)
+- [ ] Find optimal Jetty embedded server setup
+- [ ] Research CORS filter best practices
+- [ ] Find logging configurations for REST APIs
+      **Implementation**:
+
+- [ ] Create `base-project/` folder structure
+- [ ] Configure build.gradle with Jersey 2.35, Jackson 2.14, Java 8
+- [ ] Set up embedded Jetty server on port 8080
+- [ ] Configure SLF4J + Logback logging
+- [ ] Create Application.java main class
+- [ ] Add CORS filter configuration
+- [ ] Write README with setup instructions
+- **Agent**: tech-lead-orchestrator
+- **Model**: opus-4.1 (architecture decisions)
+
+#### 1.2 Domain Models [2 hours]
+
+- [ ] User.java (id, username, email, role, createdAt)
+- [ ] Product.java (id, name, description, price, category, stock)
+- [ ] Order.java (id, userId, orderItems, totalAmount, status, orderDate)
+- [ ] Create DTOs for each entity
+- [ ] Add Jackson annotations for JSON mapping
+- [ ] Create ModelMapper utility class
+- **Agent**: backend-developer
+- **Model**: claude-3-sonnet
+
+#### 1.3 REST Template [3 hours]
+
+- [ ] Create AbstractResource base class
+- [ ] Implement ExampleUserResource with all HTTP methods
+- [ ] Add exception handling (NotFoundException, ValidationException)
+- [ ] Create ErrorResponse DTO
+- [ ] Implement request/response logging filter
+- **Agent**: backend-developer
+- **Model**: opus-4.1
+
+#### 1.4 Test Infrastructure [3 hours]
+
+- [ ] Configure JUnit 5 and REST Assured
+- [ ] Create BaseIntegrationTest with server lifecycle
+- [ ] Add TestDataBuilder for entities
+- [ ] Create custom assertions
+- [ ] Write example integration test
+- **Agent**: backend-developer
+- **Model**: opus-4.1
+
+### PHASE 2: PARALLEL EXERCISE DEVELOPMENT
+
+Can be done simultaneously by multiple agents after Phase 1 completion.
+
+#### Day 1 Training Exercises
+
+##### 2.1 REST Fundamentals Exercise [3 hours]
+
+**Pre-task Research**:
+
+- [ ] Research REST maturity models (Richardson, etc.)
+- [ ] Find real-world REST API examples (Brave Search)
+- [ ] Research common REST anti-patterns
+- [ ] Get latest REST API design guidelines
+      **Implementation**:
+- [ ] Create exercises/01-rest-basics/exercise.md
+- [ ] Analyze GitHub, Twitter, Spotify APIs for REST principles
+- [ ] Create REST maturity model assessment worksheet
+- [ ] Design resources for library management system
+- **Agent**: general-purpose
+- **Model**: claude-3-sonnet (medium complexity)
+
+##### 2.2 Resource Design Exercise [2 hours]
+
+- [ ] Create exercises/02-resource-design/
+- [ ] Model blog system with posts, comments, tags
+- [ ] Define URI structure following REST conventions
+- [ ] Create state transition diagrams
+- **Agent**: api-architect
+- **Model**: opus-4.1
+
+##### 2.3 Jersey CRUD Exercise [4 hours]
+
+- [ ] Create exercises/03-jersey-crud/
+- [ ] Implement complete UserResource
+- [ ] Add pagination, filtering, sorting
+- [ ] Include validation and error handling
+- [ ] Write integration tests
+- **Agent**: backend-developer
+- **Model**: opus-4.1 (complex CRUD patterns)
+
+##### 2.4 API Versioning Exercise [3 hours]
+
+- [ ] Create exercises/04-versioning/
+- [ ] Implement /v1/users and /v2/users endpoints
+- [ ] Add header-based versioning
+- [ ] Create migration guide between versions
+- **Agent**: api-architect
+- **Model**: opus-4.1
+
+#### Day 2 Training Exercises
+
+##### 2.5 Jackson Basics Exercise [3 hours]
+
+- [ ] Create exercises/05-jackson-basics/
+- [ ] Configure Jackson ObjectMapper
+- [ ] Handle date/time serialization
+- [ ] Implement custom field naming strategies
+- [ ] Work with nested objects and collections
+- **Agent**: backend-developer
+- **Model**: claude-3-sonnet (standard exercise)
+
+##### 2.6 Jackson Advanced Exercise [3 hours]
+
+- [ ] Create exercises/06-jackson-advanced/
+- [ ] Create custom serializers/deserializers
+- [ ] Implement polymorphic type handling
+- [ ] Add JSON Views for different representations
+- **Agent**: backend-developer
+- **Model**: opus-4.1
+
+##### 2.7 Security Implementation Exercises [6 hours]
+
+**Pre-task Research** (Critical - Use all tools):
+
+- [ ] JWT best practices 2024 (Brave Search)
+- [ ] Java 8 JWT libraries comparison (Context7: /auth0/java-jwt, /jwtk/jjwt)
+- [ ] OAuth2 implementation patterns (Firecrawl OAuth2 docs)
+- [ ] API Key management strategies
+- [ ] Jersey security filter patterns
+- [ ] OWASP REST Security guidelines (Firecrawl)
+- [ ] Role-based access control patterns
+      **Implementation**:
+- [ ] Create exercises/07-security-basic/ - Basic Authentication
+- [ ] Create exercises/08-security-jwt/ - JWT tokens
+- [ ] Create exercises/09-security-apikey/ - API Key management
+- [ ] Implement authentication filters
+- [ ] Add role-based authorization
+- [ ] Create security test suite
+- **Agent**: backend-developer
+- **Model**: opus-4.1 (security complexity)
+
+### PHASE 3: SHOWCASES, DOCUMENTATION & QUALITY
+
+#### Showcases (Demo Only)
+
+##### 3.1 Client Certificate Authentication [3 hours]
+
+- [ ] Create showcases/client-certificates/
+- [ ] Generate self-signed certificates
+- [ ] Configure mutual TLS in Jersey
+- [ ] Create demo script with curl commands
+- [ ] Document setup process
+- **Agent**: backend-developer
+- **Model**: opus-4.1 (complex security)
+
+##### 3.2 OpenAPI/Swagger Integration [2 hours]
+
+- [ ] Create showcases/openapi/
+- [ ] Add Swagger annotations to resources
+- [ ] Integrate Swagger UI
+- [ ] Generate API documentation
+- [ ] Create usage examples
+- **Agent**: documentation-specialist
+- **Model**: claude-3-sonnet (documentation task)
+
+##### 3.3 Container Deployment [1 hour]
+
+- [ ] Create showcases/docker/
+- [ ] Create Dockerfile for Java 8 app
+- [ ] Docker Compose with PostgreSQL
+- [ ] Basic Kubernetes deployment YAML
+- **Agent**: general-purpose
+- **Model**: claude-3-sonnet
+
+#### Documentation & Support
+
+##### 3.4 Final Comprehensive Exercise [4 hours]
+
+- [ ] Create exercises/10-final-project/
+- [ ] Build complete e-commerce REST API
+- [ ] Combine all learned concepts
+- [ ] Include test suite and documentation
+- **Agent**: Multiple models for comparison
+- **Models**: opus-4.1 vs o3 vs gemini-2.5-pro
+
+##### 3.5 Instructor Materials [4 hours]
+
+- [ ] Create instructor-guide/README.md with timing
+- [ ] Common questions and answers
+- [ ] Troubleshooting guide
+- [ ] Alternative explanations
+- [ ] Exercise solutions with explanations
+- **Agent**: documentation-specialist
+- **Model**: opus-4.1
+
+##### 3.6 Slides and Presentations [6 hours]
+
+- [ ] Create slides/ folder with module presentations
+- [ ] Visual diagrams for REST concepts
+- [ ] Code examples and live coding notes
+- [ ] Architecture diagrams
+- **Agent**: general-purpose
+- **Model**: opus-4.1 (visual content creation)
+
+### Quality Assurance (Ongoing)
+
+#### 3.7 Java 8 Compatibility Validation
+
+- [ ] Test all code in actual Java 8 JVM
+- [ ] Verify library compatibility
+- [ ] Check for Java 9+ features
+- [ ] Create compatibility report
+- **Agent**: code-reviewer
+- **Model**: opus-4.1
+
+#### 3.8 Exercise Validation & Timing
+
+- [ ] Test each exercise completion time
+- [ ] Assess difficulty levels
+- [ ] Verify solutions work correctly
+- [ ] Adjust based on feedback
+- **Agent**: Multiple reviewers for consensus
+
+### Multi-Model Comparison Tasks
+
+For critical components, use multiple AI models and compare:
+
+#### Security Architecture Design
+
+- **opus-4.1**: Primary analysis and implementation
+- **o3**: Deep security analysis (if opus-4.1 needs validation)
+- **gemini-2.5-pro**: Alternative practical approach
+- Choose opus-4.1 unless specific security depth needed
+
+#### Final Project Specification
+
+- **opus-4.1**: Primary design and integration
+- **o3**: Complex integration validation
+- **gemini-2.5-pro**: Real-world scenario alternatives
+- Default to opus-4.1 for consistency
+
+#### Jersey vs Spring Boot Comparison
+
+- Create comparison matrix
+- Performance benchmarks
+- Developer experience analysis
+- Use multiple perspectives
+
+## Execution Strategy
+
+### Week 1: Foundation & Core Exercises
+
+- Days 1-2: Complete Phase 1 (Foundation)
+- Days 3-5: Start Phase 2 (Parallel exercises)
+
+### Week 2: Advanced & Polish
+
+- Days 1-2: Complete remaining exercises
+- Days 3-4: Showcases and documentation
+- Day 5: Quality assurance and final validation
+
+### Success Metrics
+
+- All exercises completable in allocated time
+- Java 8 compatibility 100% verified
+- Security implementations follow best practices
+- Progressive difficulty curve validated
+- Instructor can deliver with confidence
+
+## Research Tools Strategy
+
+### Web Research Tools Usage:
+
+1. **Context7** (`/resolve-library-id` then `/get-library-docs`):
+
+   - Primary source for library documentation
+   - Jersey: `/jersey/jersey`
+   - Jackson: `/fasterxml/jackson-databind`
+   - JWT libraries: `/auth0/java-jwt`, `/jwtk/jjwt`
+   - Testing: `/rest-assured/rest-assured`
+
+2. **Brave Search** (`brave_web_search`):
+
+   - Latest best practices and patterns
+   - Training methodologies
+   - Security vulnerabilities and fixes
+   - Community solutions and discussions
+
+3. **Firecrawl** (`firecrawl_scrape`, `firecrawl_map`):
+   - Official documentation deep dives
+   - OWASP guidelines
+   - Enterprise REST API examples
+   - Course syllabi from other trainings
+
+### Research-First Approach Benefits:
+
+- Ensures Java 8 compatibility before implementation
+- Discovers latest security vulnerabilities
+- Finds proven patterns and anti-patterns
+- Validates architectural decisions
+- Reduces rework and technical debt
+
+## Next Actions
+
+1. **Execute Phase 0 Research** (Critical - Do First)
+1. Create base-project folder structure
+1. Set up Gradle build with Java 8 configuration
+1. Implement domain models
+1. Launch parallel exercise development with multiple agents
+1. Begin Java 8 compatibility testing early
+
+## Appendix: Research Queries
+
+### Jersey and REST (Java 8 Focus)
+
+- "Jersey 2.x Java 8 best practices"
+- "Jersey 2.35 vs 2.39 Java 8 compatibility"
+- "Jersey vs Spring Boot REST comparison Java 8"
+- "Enterprise Jersey patterns Java 8"
+- "Jersey security implementations Java 8"
+- "Jackson 2.x with Jersey 2.x Java 8"
+
+### Training Design
+
+- "Technical training best practices"
+- "REST API workshop structure"
+- "Hands-on coding exercises design"
+- "Enterprise developer training"
+
+### Security Topics
+
+- "JWT implementation Jersey"
+- "REST API security patterns"
+- "Client certificate authentication Java"
+- "API versioning strategies"

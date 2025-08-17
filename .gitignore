@@ -1,0 +1,35 @@
+# Un-ignore plan.md (overrides global gitignore)
+!plan.md
+!PLAN.md
+
+# Project-specific ignores
+*.log
+*.tmp
+.DS_Store
+target/
+build/
+.gradle/
+.idea/
+*.iml
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/
+
+# IntelliJ
+*.ipr
+*.iws
+
+# Temp files
+*~
+*.swp
+*.swo
