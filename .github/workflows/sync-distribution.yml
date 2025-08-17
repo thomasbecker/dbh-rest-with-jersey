@@ -1,0 +1,97 @@
+name: Sync Distribution Repositories
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'participant/**'
+      - 'instructor/solutions/**'
+      - 'slides/**'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  sync-participant:
+    runs-on: ubuntu-latest
+    if: github.repository == 'dbh-training/dbh-rest-with-jackson'
+    
+    steps:
+    - name: Checkout main repo
+      uses: actions/checkout@v3
+      with:
+        path: main
+
+    - name: Checkout participant repo
+      uses: actions/checkout@v3
+      with:
+        repository: dbh-training/dbh-jersey-training-participant
+        token: ${{ secrets.DISTRIBUTION_TOKEN }}
+        path: participant-dist
+
+    - name: Sync participant materials
+      run: |
+        # Clear existing content (except .git)
+        find participant-dist -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+        
+        # Copy participant materials
+        cp -r main/participant/* participant-dist/
+        
+        # Create setup script
+        cat > participant-dist/setup.sh << 'EOF'
+        #!/bin/bash
+        echo "Setting up DBH REST Training environment..."
+        java_version=$(java -version 2>&1 | head -n 1 | cut -d'"' -f 2 | cut -d'.' -f 1-2)
+        if [[ "$java_version" != "1.8" ]]; then
+            echo "Warning: Java 8 is required. Found: $java_version"
+        fi
+        cd base-project && ./gradlew build
+        EOF
+        chmod +x participant-dist/setup.sh
+
+    - name: Commit and push participant changes
+      run: |
+        cd participant-dist
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add -A
+        git diff --staged --quiet || git commit -m "Sync from main repo: ${{ github.sha }}"
+        git push
+
+  sync-solutions:
+    runs-on: ubuntu-latest
+    if: github.repository == 'dbh-training/dbh-rest-with-jackson'
+    
+    steps:
+    - name: Checkout main repo
+      uses: actions/checkout@v3
+      with:
+        path: main
+
+    - name: Checkout solutions repo
+      uses: actions/checkout@v3
+      with:
+        repository: dbh-training/dbh-jersey-training-solutions
+        token: ${{ secrets.DISTRIBUTION_TOKEN }}
+        path: solutions-dist
+
+    - name: Sync solution materials
+      run: |
+        # Clear existing content (except .git)
+        find solutions-dist -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+        
+        # Copy solution materials
+        cp -r main/instructor/solutions/* solutions-dist/ 2>/dev/null || true
+        
+        # Ensure README exists
+        if [ ! -f solutions-dist/README.md ]; then
+          echo "# DBH REST Training - Solutions" > solutions-dist/README.md
+          echo "**INSTRUCTOR USE ONLY**" >> solutions-dist/README.md
+        fi
+
+    - name: Commit and push solution changes
+      run: |
+        cd solutions-dist
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add -A
+        git diff --staged --quiet || git commit -m "Sync from main repo: ${{ github.sha }}"
+        git push
