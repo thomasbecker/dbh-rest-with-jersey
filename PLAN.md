@@ -294,9 +294,9 @@ organization and easier sharing with participants.
 
 ```
 dbh-rest-with-jackson/
-├── base-project/           # Starting point for participants
-├── exercises/             # Individual exercise modules (01-10)
-├── solutions/            # Complete solutions for instructors
+├── starter-project/       # Skeleton with infrastructure only (participants get this)
+├── exercises/             # Individual exercise modules (01-10)  
+├── instructor-solution/   # Complete implementation (instructor reference)
 ├── showcases/           # Demo-only materials
 ├── slides/             # Presentation materials
 └── instructor-guide/   # Teaching notes and timing
@@ -336,40 +336,30 @@ dbh-rest-with-jackson/
       **Tools**: Brave Search for training resources, Firecrawl for course outlines
       **Model**: claude-sonnet-4
 
-### PHASE 1: FOUNDATION (Critical Path - Sequential)
+### PHASE 1: FOUNDATION (Critical Path - Sequential) ✅ RESTRUCTURED
 
-Must be completed first in order. These form the foundation for all exercises.
+#### 1.1 Starter Project Infrastructure [4 hours] ✅ COMPLETED
 
-#### 1.1 Base Project Setup [4 hours] ✅ COMPLETED
+**What We Created**:
+- [x] `starter-project/` - Skeleton with just infrastructure
+  - [x] Application.java (server setup)
+  - [x] JerseyConfig (basic configuration)
+  - [x] CORS and Logging filters
+  - [x] ErrorResponse DTO (for error handling)
+  - [x] Stub models with TODOs (User, Product, Order)
+  - [x] build.gradle with all dependencies
+  - [x] README with exercise instructions
 
-**Pre-task Research**:
+#### 1.2 Instructor Solution [2 hours] ✅ COMPLETED
 
-- [x] Research Gradle configurations for Jersey 2.35 (Context7)
-- [x] Find optimal Jetty embedded server setup
-- [x] Research CORS filter best practices
-- [x] Find logging configurations for REST APIs
-      **Implementation**:
+- [x] `instructor-solution/` - Complete reference implementation
+  - [x] All models with validation
+  - [x] All DTOs with mappings
+  - [x] ModelMapper utility
+  - [x] Complete resources (to be added in 1.3)
+  - [x] Full exception handling
 
-- [x] Create `base-project/` folder structure
-- [x] Configure build.gradle with Jersey 2.35, Jackson 2.14, Java 8
-- [x] Set up embedded Jetty server on port 8080
-- [x] Configure SLF4J + Logback logging
-- [x] Create Application.java main class
-- [x] Add CORS filter configuration
-- [x] Write README with setup instructions
-- **Agent**: tech-lead-orchestrator
-- **Model**: opus-4.1 (architecture decisions)
-
-#### 1.2 Domain Models [2 hours]
-
-- [ ] User.java (id, username, email, role, createdAt)
-- [ ] Product.java (id, name, description, price, category, stock)
-- [ ] Order.java (id, userId, orderItems, totalAmount, status, orderDate)
-- [ ] Create DTOs for each entity
-- [ ] Add Jackson annotations for JSON mapping
-- [ ] Create ModelMapper utility class
-- **Agent**: backend-developer
-- **Model**: claude-sonnet-4
+**Note**: Domain models, DTOs, and validation are now EXERCISE TASKS, not base setup
 
 #### 1.3 REST Template [3 hours]
 
@@ -425,21 +415,22 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 ##### 2.3 Jersey CRUD Exercise [3 hours]
 
 - [ ] Create exercises/03-jersey-crud/
-- [ ] Implement complete UserResource
-- [ ] Add pagination, filtering, sorting
-- [ ] Basic error handling
-- [ ] Write integration tests
+- [ ] **Trainees implement**: Complete User model fields
+- [ ] **Trainees implement**: Create UserResource from scratch
+- [ ] **Trainees implement**: Add CRUD operations (GET, POST, PUT, DELETE)
+- [ ] **Trainees implement**: Basic error handling
+- [ ] Provide test cases they must pass
 - **Agent**: backend-developer
 - **Model**: opus-4.1 (complex CRUD patterns)
 
 ##### 2.3b Bean Validation Exercise [1 hour]
 
 - [ ] Create exercises/03b-bean-validation/
-- [ ] Add validation annotations to User model
-- [ ] Implement @Valid in UserResource
-- [ ] Create custom validator for email uniqueness
-- [ ] Handle ConstraintViolationException
-- [ ] Test validation with invalid data
+- [ ] **Trainees add**: Validation annotations to their User model
+- [ ] **Trainees implement**: @Valid in UserResource methods
+- [ ] **Trainees create**: Custom validator for email uniqueness
+- [ ] **Trainees handle**: ConstraintViolationException in mapper
+- [ ] Provide test data with invalid inputs
 - **Agent**: backend-developer
 - **Model**: claude-sonnet-4
 
