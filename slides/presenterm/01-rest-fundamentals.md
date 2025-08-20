@@ -816,53 +816,199 @@ speaker_note: |
 
 <!-- end_slide -->
 
-# Common REST Anti-Patterns
+# Exercise: Spot the Anti-Pattern! 🔍
 
-## ❌ Verbs in URLs
+## Example 1: What's wrong here?
 
 ```http
-/api/getUser/123
-/api/deleteUser/123
+POST /api/getUser
+Content-Type: application/json
+
+{
+  "userId": 123
+}
 ```
 
 <!-- pause -->
 
-## ❌ Ignoring HTTP Methods
+**Problems:**
+- ❌ Verb in URL (`getUser`)
+- ❌ Using POST for retrieval
+- ❌ RPC-style thinking
 
-```http
-POST /api/users/delete/123
-```
-
-<!-- pause -->
-
-## ❌ Poor Status Code Usage
-
-- Always returning 200 OK
-- Using 200 for errors with error in body
+**Solution:** ✅ `GET /api/users/123`
 
 <!--
 speaker_note: |
-  COMMON ANTI-PATTERNS (4 minutes)
+  ANTI-PATTERN EXERCISE 1 (2 minutes)
 
-  • Anti-pattern 1: Verbs in URLs
-    - Shows RPC thinking
-    - /getUser → should be GET /users
+  • Ask audience: "What's wrong with this request?"
+  • Wait for responses (30 seconds)
+  • Common answers they should give:
+    - "getUser is a verb in the URL"
+    - "Why POST for getting data?"
+    - "Looks like SOAP/RPC"
 
-  • Anti-pattern 2: Wrong HTTP methods
-    - POST /users/delete/123
-    - Should be DELETE /users/123
+  • Reveal problems one by one
+  • Show the correct REST approach
+  • Emphasize: Let HTTP method be the verb!
+-->
 
-  • Anti-pattern 3: Status code abuse
-    - Always 200 with error in body
-    - Breaks HTTP semantics
-    - Tools/proxies can't understand
+<!-- end_slide -->
 
-  • Why these happen:
-    - SOAP/RPC background
-    - Not understanding HTTP
-    - Quick migrations
+# Exercise: Spot the Anti-Pattern! 🔍
 
-  • We'll do it RIGHT from start!
+## Example 2: What's wrong here?
+
+```http
+POST /api/users/delete/123
+POST /api/users/update/123
+POST /api/users/create
+```
+
+<!-- pause -->
+
+**Problems:**
+- ❌ Actions in URLs (`delete`, `update`, `create`)
+- ❌ Using POST for everything
+- ❌ Not leveraging HTTP methods
+
+**Solution:**
+- ✅ `DELETE /api/users/123`
+- ✅ `PUT /api/users/123`
+- ✅ `POST /api/users`
+
+<!--
+speaker_note: |
+  ANTI-PATTERN EXERCISE 2 (2 minutes)
+
+  • Ask: "What's the pattern you see here?"
+  • Wait for responses (30 seconds)
+  • They should notice:
+    - "Everything is POST!"
+    - "Actions in the URLs"
+    - "Not using DELETE/PUT"
+
+  • Key point: HTTP methods ARE your verbs
+  • POST-only APIs lose semantics
+  • Can't use HTTP caching properly
+-->
+
+<!-- end_slide -->
+
+# Exercise: Spot the Anti-Pattern! 🔍
+
+## Example 3: What's wrong here?
+
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "success": false,
+  "error": {
+    "code": "USER_NOT_FOUND",
+    "message": "User with ID 999 not found"
+  }
+}
+```
+
+<!-- pause -->
+
+**Problems:**
+- ❌ Returns 200 OK for an error
+- ❌ Error info buried in response body
+- ❌ Breaks HTTP semantics
+
+**Solution:**
+```http
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{
+  "error": "User with ID 999 not found"
+}
+```
+
+<!--
+speaker_note: |
+  ANTI-PATTERN EXERCISE 3 (2 minutes)
+
+  • Ask: "The request failed but something's off..."
+  • Wait for responses (30 seconds)
+  • They should spot:
+    - "200 OK but it's an error!"
+    - "Should be 404"
+    - "Proxies/tools won't know it failed"
+
+  • Explain impact:
+    - Monitoring tools think all is well
+    - Caches might store error as success
+    - Client libraries can't handle properly
+
+  • Rule: Use HTTP status codes correctly!
+-->
+
+<!-- end_slide -->
+
+# Exercise: Design This Resource! 🏗️
+
+## Scenario: Online Library System
+
+You need endpoints for:
+- Getting all books
+- Getting a specific book
+- Getting books by an author
+- Searching/filtering books
+- Borrowing a book
+- Returning a book
+
+**Take 2 minutes - design the URLs and methods!**
+
+<!-- pause -->
+
+## Suggested Solution:
+
+```http
+GET    /api/books              # All books
+GET    /api/books/123          # Specific book
+GET    /api/authors/456/books  # Books by author
+POST   /api/books/123/borrow   # Borrow (creates loan)
+DELETE /api/books/123/borrow   # Return (ends loan)
+```
+
+**Query String Examples:**
+```http
+GET /api/books?genre=fiction&year=2024
+GET /api/books?search=java&limit=10&offset=20
+GET /api/books?available=true&sort=title
+GET /api/books?author=King&genre=horror
+```
+
+Alternative for borrow/return:
+```http
+POST   /api/loans              # Create loan
+DELETE /api/loans/789          # End loan
+```
+
+<!--
+speaker_note: |
+  DESIGN EXERCISE (5 minutes)
+
+  • Give them 2 minutes to think/discuss
+  • Have 2-3 people share their designs
+  • Common mistakes to address:
+    - /api/borrowBook/123 (verb in URL)
+    - /api/getBooksByAuthor (verb again)
+    - Using POST for return
+
+  • Discuss alternatives:
+    - Borrow/return as actions vs. loans as resources
+    - Both are valid REST approaches!
+    - Loans as resources is more "pure" REST
+
+  • Key lesson: Multiple correct solutions exist
+  • Focus on consistency and clarity
 -->
 
 <!-- end_slide -->
