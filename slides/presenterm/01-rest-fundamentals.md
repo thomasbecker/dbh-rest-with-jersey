@@ -68,7 +68,7 @@ speaker_note: |
 
 ## When not coding...
 
-🧗 My Children/Soccer/Bouldering/Climbing/Mountainbiking
+🧗 My Children/Coding/Soccer/Bouldering/Climbing/Mountainbiking
 
 <!--
 speaker_note: |
@@ -832,6 +832,7 @@ Content-Type: application/json
 <!-- pause -->
 
 **Problems:**
+
 - ❌ Verb in URL (`getUser`)
 - ❌ Using POST for retrieval
 - ❌ RPC-style thinking
@@ -869,11 +870,13 @@ POST /api/users/create
 <!-- pause -->
 
 **Problems:**
+
 - ❌ Actions in URLs (`delete`, `update`, `create`)
 - ❌ Using POST for everything
 - ❌ Not leveraging HTTP methods
 
 **Solution:**
+
 - ✅ `DELETE /api/users/123`
 - ✅ `PUT /api/users/123`
 - ✅ `POST /api/users`
@@ -916,11 +919,13 @@ Content-Type: application/json
 <!-- pause -->
 
 **Problems:**
+
 - ❌ Returns 200 OK for an error
 - ❌ Error info buried in response body
 - ❌ Breaks HTTP semantics
 
 **Solution:**
+
 ```http
 HTTP/1.1 404 Not Found
 Content-Type: application/json
@@ -956,6 +961,7 @@ speaker_note: |
 ## Scenario: Online Library System
 
 You need endpoints for:
+
 - Getting all books
 - Getting a specific book
 - Getting books by an author
@@ -978,6 +984,7 @@ DELETE /api/books/123/borrow   # Return (ends loan)
 ```
 
 **Query String Examples:**
+
 ```http
 GET /api/books?genre=fiction&year=2024
 GET /api/books?search=java&limit=10&offset=20
@@ -986,6 +993,7 @@ GET /api/books?author=King&genre=horror
 ```
 
 Alternative for borrow/return:
+
 ```http
 POST   /api/loans              # Create loan
 DELETE /api/loans/789          # End loan
