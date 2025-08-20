@@ -187,11 +187,12 @@ organization and easier sharing with participants.
 
 1. **Slide Decks**
 
-   - 8 comprehensive modules (2 of 8 completed)
+   - 9 comprehensive modules (2 of 9 completed)
      - [x] 01-rest-fundamentals.md
      - [x] 02-resource-design.md
      - [ ] 03-jersey-setup.md
      - [ ] 04-jersey-crud.md
+     - [ ] 04b-bean-validation.md
      - [ ] 05-api-versioning.md
      - [ ] 06-jackson-basics.md
      - [ ] 07-jackson-advanced.md
@@ -421,15 +422,26 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - **Agent**: api-architect
 - **Model**: opus-4.1
 
-##### 2.3 Jersey CRUD Exercise [4 hours]
+##### 2.3 Jersey CRUD Exercise [3 hours]
 
 - [ ] Create exercises/03-jersey-crud/
 - [ ] Implement complete UserResource
 - [ ] Add pagination, filtering, sorting
-- [ ] Include validation and error handling
+- [ ] Basic error handling
 - [ ] Write integration tests
 - **Agent**: backend-developer
 - **Model**: opus-4.1 (complex CRUD patterns)
+
+##### 2.3b Bean Validation Exercise [1 hour]
+
+- [ ] Create exercises/03b-bean-validation/
+- [ ] Add validation annotations to User model
+- [ ] Implement @Valid in UserResource
+- [ ] Create custom validator for email uniqueness
+- [ ] Handle ConstraintViolationException
+- [ ] Test validation with invalid data
+- **Agent**: backend-developer
+- **Model**: claude-sonnet-4
 
 ##### 2.4 API Versioning Exercise [3 hours]
 
@@ -545,8 +557,9 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - [x] Create slides/presenterm/01-rest-fundamentals.md - HTTP/REST Basics (75 min content)
 - [x] Create slides/presenterm/02-resource-design.md - Resource Orientation & REST Principles (60 min content)
 - [ ] Create slides/presenterm/03-jersey-setup.md - Plain Java with Jersey Setup (60 min content)
-- [ ] Create slides/presenterm/04-jersey-crud.md - Building REST Controllers with Jersey (90 min content)
-- [ ] Create slides/presenterm/05-api-versioning.md - API Versioning Strategies (60 min content)
+- [ ] Create slides/presenterm/04-jersey-crud.md - Building REST Controllers with Jersey (75 min content)
+- [ ] Create slides/presenterm/04b-bean-validation.md - Bean Validation with Jersey (30 min content)
+- [ ] Create slides/presenterm/05-api-versioning.md - API Versioning Strategies (45 min content)
 
 **Day 2 Slides:**
 

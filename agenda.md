@@ -39,21 +39,29 @@
 - Basic configuration
 - Exercise: Create Jersey project
 
-#### 2. Building REST Controllers with Jersey (90 min)
+#### 2. Building REST Controllers with Jersey (75 min)
 
 - JAX-RS annotations
 - Request/Response handling
 - Content negotiation
 - Exercise: Implement CRUD operations
 
-#### 3. API Versioning Strategies (60 min)
+#### 3. Bean Validation with Jersey (30 min)
+
+- JSR-303/Bean Validation basics
+- Common annotations (@NotNull, @Size, @Email, @Pattern)
+- Integration with Jersey (@Valid parameter)
+- Validation error handling
+- Exercise: Add validation to REST endpoints
+
+#### 4. API Versioning Strategies (45 min)
 
 - URI versioning
 - Header versioning
 - Media type versioning
 - Exercise: Implement versioned endpoints
 
-#### 4. Spring Boot Overview (30 min)
+#### 5. Spring Boot Overview (30 min)
 
 - What Spring Boot abstracts
 - Jersey with vs without Spring Boot
