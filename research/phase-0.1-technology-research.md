@@ -8,17 +8,21 @@ for Java 8 compatibility, conducted for the DBH REST API training preparation.
 ## 1. Jersey Framework (Java 8 Compatible)
 
 ### Version Selection
+
 - **Recommended**: Jersey 2.35 or 2.39
 - **Critical**: Must use Jersey 2.x branch (not 3.x which requires Java 11+)
 - **Latest Java 8 compatible**: Jersey 2.39.1 (released 2023)
 
 ### Key Features for Training
+
 1. **JAX-RS 2.1 Implementation**
+
    - Full REST API support
    - Annotations-based resource mapping
    - Content negotiation
 
 2. **Embedded Server Support**
+
    - Jetty integration (preferred for training)
    - Grizzly as alternative
    - Simple main() class deployment
@@ -29,6 +33,7 @@ for Java 8 compatibility, conducted for the DBH REST API training preparation.
    - Filter and interceptor chains
 
 ### Best Practices (Java 8)
+
 ```java
 // Resource class example
 @Path("/api/users")
@@ -40,6 +45,7 @@ public class UserResource {
 ```
 
 ### Integration with Embedded Jetty
+
 ```xml
 <dependency>
     <groupId>org.glassfish.jersey.containers</groupId>
@@ -51,6 +57,7 @@ public class UserResource {
 ## 2. Jackson Library (Java 8 Compatible)
 
 ### Version Selection
+
 - **Recommended**: Jackson 2.14.x or 2.15.x
 - **Latest Java 8 compatible**: Jackson 2.15.3
 - **Core modules**: jackson-databind, jackson-core, jackson-annotations
@@ -58,7 +65,9 @@ public class UserResource {
 ### Key Training Topics
 
 #### Basic Features
+
 1. **Object Mapping**
+
    ```java
    ObjectMapper mapper = new ObjectMapper(); // create once, reuse
    MyValue value = mapper.readValue(json, MyValue.class);
@@ -66,18 +75,21 @@ public class UserResource {
    ```
 
 2. **Annotations**
+
    - `@JsonProperty` - field naming
    - `@JsonIgnore` - exclusion
    - `@JsonIgnoreProperties` - class-level ignore
    - `@JsonCreator` - custom constructors
 
 3. **Configuration**
+
    ```java
    mapper.enable(SerializationFeature.INDENT_OUTPUT);
    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
    ```
 
 #### Advanced Features
+
 1. **Custom Serializers/Deserializers**
 2. **Polymorphic type handling**
 3. **JSON Views**
@@ -85,6 +97,7 @@ public class UserResource {
 5. **Tree Model for dynamic JSON**
 
 ### Jersey Integration
+
 ```xml
 <dependency>
     <groupId>org.glassfish.jersey.media</groupId>
@@ -97,15 +110,16 @@ public class UserResource {
 
 ### Library Comparison Matrix
 
-| Library | Java 8 Support | Pros | Cons | Recommendation |
-|---------|---------------|------|------|----------------|
-| **jjwt** | ✅ Yes (0.11.5) | - Simple API<br>- Good docs<br>- Lightweight | - Less features<br>- No JWKS support | ✅ **Best for training** |
-| **java-jwt** | ✅ Yes (4.4.0) | - Auth0 backed<br>- Simple<br>- Well maintained | - Basic features only | Good alternative |
-| **nimbus-jose-jwt** | ✅ Yes (9.x) | - Full JOSE suite<br>- JWKS support<br>- Feature rich | - Complex API<br>- Heavier | For advanced scenarios |
+| Library             | Java 8 Support  | Pros                                                  | Cons                                 | Recommendation           |
+| ------------------- | --------------- | ----------------------------------------------------- | ------------------------------------ | ------------------------ |
+| **jjwt**            | ✅ Yes (0.11.5) | - Simple API<br>- Good docs<br>- Lightweight          | - Less features<br>- No JWKS support | ✅ **Best for training** |
+| **java-jwt**        | ✅ Yes (4.4.0)  | - Auth0 backed<br>- Simple<br>- Well maintained       | - Basic features only                | Good alternative         |
+| **nimbus-jose-jwt** | ✅ Yes (9.x)    | - Full JOSE suite<br>- JWKS support<br>- Feature rich | - Complex API<br>- Heavier           | For advanced scenarios   |
 
 ### Recommended: JJWT for Training
 
 #### Maven Dependency
+
 ```xml
 <dependency>
     <groupId>io.jsonwebtoken</groupId>
@@ -127,6 +141,7 @@ public class UserResource {
 ```
 
 #### Basic Usage Pattern
+
 ```java
 // Creating JWT
 String jwt = Jwts.builder()
@@ -147,19 +162,23 @@ Claims claims = Jwts.parser()
 ### Approaches Comparison
 
 1. **URI Path Versioning** (Recommended for training)
+
    ```
    /api/v1/users
    /api/v2/users
    ```
+
    - ✅ Clear and visible
    - ✅ Easy to route
    - ❌ URL proliferation
 
 2. **Header Versioning**
+
    ```
    Accept: application/vnd.api+json;version=2
    X-API-Version: 2
    ```
+
    - ✅ Clean URLs
    - ✅ REST purist approach
    - ❌ Less discoverable
@@ -172,6 +191,7 @@ Claims claims = Jwts.parser()
    - ❌ Can be overlooked
 
 ### Jersey Implementation
+
 ```java
 // URI versioning
 @Path("/v1/users")
@@ -190,31 +210,32 @@ public Response getUsersV1() { }
 
 ### Jetty vs Grizzly Comparison
 
-| Aspect | Jetty | Grizzly |
-|--------|-------|---------|
-| Popularity | Higher | Lower |
-| Documentation | Extensive | Good |
-| Performance | Excellent | Excellent |
-| Jersey Integration | Native | Native |
+| Aspect             | Jetty               | Grizzly     |
+| ------------------ | ------------------- | ----------- |
+| Popularity         | Higher              | Lower       |
+| Documentation      | Extensive           | Good        |
+| Performance        | Excellent           | Excellent   |
+| Jersey Integration | Native              | Native      |
 | **Recommendation** | ✅ Use for training | Alternative |
 
 ### Basic Jetty Setup
+
 ```java
 public class Application {
     public static void main(String[] args) {
         Server server = new Server(8080);
-        
+
         ServletContextHandler context = new ServletContextHandler();
         context.setContextPath("/");
         server.setHandler(context);
-        
+
         ServletHolder jerseyServlet = context.addServlet(
             org.glassfish.jersey.servlet.ServletContainer.class, "/api/*");
         jerseyServlet.setInitOrder(0);
         jerseyServlet.setInitParameter(
             "jersey.config.server.provider.packages",
             "com.dbh.training.resources");
-        
+
         server.start();
         server.join();
     }
@@ -226,11 +247,13 @@ public class Application {
 ### Authentication Approaches
 
 1. **Basic Authentication**
+
    - Simple for exercises
    - Base64 encoding
    - Stateless
 
 2. **JWT Tokens** (Focus area)
+
    - Stateless
    - Scalable
    - Industry standard
@@ -240,6 +263,7 @@ public class Application {
    - Good for service-to-service
 
 ### Jersey Security Filter
+
 ```java
 @Provider
 @Priority(Priorities.AUTHENTICATION)
@@ -255,6 +279,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 ## 7. Testing Strategy
 
 ### REST Assured Configuration
+
 ```xml
 <dependency>
     <groupId>io.rest-assured</groupId>
@@ -265,6 +290,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 ```
 
 ### Integration Test Pattern
+
 ```java
 @Test
 public void testGetUser() {
@@ -281,19 +307,21 @@ public void testGetUser() {
 ## 8. Enterprise Patterns
 
 ### Richardson Maturity Model
+
 - **Level 0**: Single URI, single HTTP method
 - **Level 1**: Multiple URIs, single HTTP method
 - **Level 2**: HTTP verbs (GET, POST, PUT, DELETE)
 - **Level 3**: HATEOAS (Hypermedia controls)
 
 ### Error Handling
+
 ```java
 @Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
     @Override
     public Response toResponse(Exception exception) {
         ErrorResponse error = new ErrorResponse(
-            500, 
+            500,
             exception.getMessage(),
             System.currentTimeMillis()
         );
@@ -305,6 +333,7 @@ public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
 ## 9. Training Exercise Progression
 
 ### Suggested Order
+
 1. Basic Jersey resource creation
 2. CRUD operations
 3. Jackson integration
@@ -321,12 +350,11 @@ public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
 1. **Date/Time Handling**
    - Use Java 8 time API
    - Configure Jackson JavaTimeModule
-   
 2. **Lambda Limitations**
    - No var keyword
    - Type inference limitations
-   
 3. **Module System**
+
    - Not available (Java 9+)
    - Use traditional classpath
 
@@ -337,6 +365,7 @@ public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
 ## Recommendations Summary
 
 ### Core Stack
+
 - **Jersey**: 2.35 or 2.39
 - **Jackson**: 2.14.x or 2.15.x
 - **JWT**: JJWT 0.11.5
@@ -345,6 +374,7 @@ public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
 - **Build Tool**: Gradle 8.5+
 
 ### Architecture Decisions
+
 1. Use embedded Jetty for simplicity
 2. URI versioning for clarity
 3. JJWT for JWT implementation
@@ -352,6 +382,7 @@ public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
 5. Jersey filters for cross-cutting concerns
 
 ### Training Focus Areas
+
 1. REST principles and maturity models
 2. Jersey annotations and resource classes
 3. Jackson annotations and custom serialization
@@ -362,15 +393,18 @@ public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
 ## Resources and References
 
 ### Documentation
+
 - [Jersey User Guide](https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/user-guide.html)
 - [Jackson Documentation](https://github.com/FasterXML/jackson-docs)
 - [JJWT Documentation](https://github.com/jwtk/jjwt)
 
 ### Example Projects
+
 - [Jersey with Embedded Jetty](https://github.com/edomingues/jersey2-jetty-example)
 - [Jersey REST Examples](https://github.com/eclipse-ee4j/jersey/tree/2.x/examples)
 
 ### Articles
+
 - REST API Design Best Practices
 - Jersey vs Spring Boot Comparison
 - JWT Security Considerations
