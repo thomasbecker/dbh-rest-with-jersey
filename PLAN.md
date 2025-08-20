@@ -301,12 +301,12 @@ dbh-rest-with-jackson/
 
 **Research Tasks** (Use Brave Search, Firecrawl, Context7):
 
-- [ ] Jersey 2.x Java 8 compatibility and best practices (Context7: /jersey/jersey)
-- [ ] Jackson 2.x with Java 8 patterns (Context7: /fasterxml/jackson)
-- [ ] Embedded server comparison: Jetty vs Grizzly
-- [ ] JWT libraries for Java 8 (jjwt vs java-jwt vs nimbus-jose-jwt)
-- [ ] REST API design patterns 2024/2025
-- [ ] Enterprise security patterns for REST APIs
+- [x] Jersey 2.x Java 8 compatibility and best practices (Context7: /jersey/jersey)
+- [x] Jackson 2.x with Java 8 patterns (Context7: /fasterxml/jackson)
+- [x] Embedded server comparison: Jetty vs Grizzly
+- [x] JWT libraries for Java 8 (jjwt vs java-jwt vs nimbus-jose-jwt)
+- [x] REST API design patterns 2024/2025
+- [x] Enterprise security patterns for REST APIs
       **Tools**: Brave Search for articles, Firecrawl for docs, Context7 for library references
       **Model**: claude-3-sonnet
 
@@ -314,11 +314,11 @@ dbh-rest-with-jackson/
 
 **Research Tasks**:
 
-- [ ] Existing Jersey training materials and courses
-- [ ] REST API workshop structures
-- [ ] Adult learning principles for technical training
-- [ ] Hands-on exercise design patterns
-- [ ] Common pitfalls in REST API training
+- [x] Existing Jersey training materials and courses
+- [x] REST API workshop structures
+- [x] Adult learning principles for technical training
+- [x] Hands-on exercise design patterns
+- [x] Common pitfalls in REST API training
       **Tools**: Brave Search for training resources, Firecrawl for course outlines
       **Model**: claude-3-sonnet
 
@@ -387,10 +387,10 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 **Pre-task Research**:
 
-- [ ] Research REST maturity models (Richardson, etc.)
-- [ ] Find real-world REST API examples (Brave Search)
-- [ ] Research common REST anti-patterns
-- [ ] Get latest REST API design guidelines
+- [x] Research REST maturity models (Richardson, etc.)
+- [x] Find real-world REST API examples (Brave Search)
+- [x] Research common REST anti-patterns
+- [x] Get latest REST API design guidelines
       **Implementation**:
 - [ ] Create exercises/01-rest-basics/exercise.md
 - [ ] Analyze GitHub, Twitter, Spotify APIs for REST principles
@@ -452,13 +452,13 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 **Pre-task Research** (Critical - Use all tools):
 
-- [ ] JWT best practices 2024 (Brave Search)
-- [ ] Java 8 JWT libraries comparison (Context7: /auth0/java-jwt, /jwtk/jjwt)
-- [ ] OAuth2 implementation patterns (Firecrawl OAuth2 docs)
-- [ ] API Key management strategies
-- [ ] Jersey security filter patterns
-- [ ] OWASP REST Security guidelines (Firecrawl)
-- [ ] Role-based access control patterns
+- [x] JWT best practices 2024 (Brave Search)
+- [x] Java 8 JWT libraries comparison (Context7: /auth0/java-jwt, /jwtk/jjwt)
+- [x] OAuth2 implementation patterns (Firecrawl OAuth2 docs)
+- [x] API Key management strategies
+- [x] Jersey security filter patterns
+- [x] OWASP REST Security guidelines (Firecrawl)
+- [x] Role-based access control patterns
       **Implementation**:
 - [ ] Create exercises/07-security-basic/ - Basic Authentication
 - [ ] Create exercises/08-security-jwt/ - JWT tokens
@@ -515,7 +515,7 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 ##### 3.5 Instructor Materials [4 hours]
 
-- [ ] Create instructor-guide/README.md with timing
+- [x] Create instructor-guide/README.md with timing
 - [ ] Common questions and answers
 - [ ] Troubleshooting guide
 - [ ] Alternative explanations
@@ -525,8 +525,8 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 ##### 3.6 Slides and Presentations [6 hours]
 
-- [ ] Create slides/ folder with module presentations
-- [ ] Visual diagrams for REST concepts
+- [x] Create slides/ folder with module presentations
+- [x] Visual diagrams for REST concepts (partial - slides 01-02)
 - [ ] Code examples and live coding notes
 - [ ] Architecture diagrams
 - **Agent**: general-purpose
@@ -632,8 +632,8 @@ For critical components, use multiple AI models and compare:
 
 ## Next Actions
 
-1. **Execute Phase 0 Research** (Critical - Do First)
-1. Create base-project folder structure
+1. ~~**Execute Phase 0 Research**~~ ✅ COMPLETED
+1. **Create base-project folder structure** (Critical - Do First)
 1. Set up Gradle build with Java 8 configuration
 1. Implement domain models
 1. Launch parallel exercise development with multiple agents
