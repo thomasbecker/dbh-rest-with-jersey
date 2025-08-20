@@ -303,10 +303,10 @@ dbh-rest-with-jackson/
 
 ### AI Model Strategy (Anthropic Max Plan)
 
-- **claude-3-opus (Opus 4.1)**: Complex tasks - architecture, security, advanced patterns, critical design
-- **claude-3-sonnet**: Everything else - standard exercises, documentation, basic implementations
+- **claude-opus-4.1**: Complex tasks - architecture, security, advanced patterns, critical design
+- **claude-sonnet-4**: Everything else - standard exercises, documentation, basic implementations
 - **Multiple models**: Critical decisions requiring comparison
-- Note: With Max Plan, using Sonnet as minimum ensures quality for all tasks
+- Note: With Max Plan, using Sonnet 4 as minimum ensures quality for all tasks
 
 ### PHASE 0: COMPREHENSIVE RESEARCH
 
@@ -321,7 +321,7 @@ dbh-rest-with-jackson/
 - [x] REST API design patterns 2024/2025
 - [x] Enterprise security patterns for REST APIs
       **Tools**: Brave Search for articles, Firecrawl for docs, Context7 for library references
-      **Model**: claude-3-sonnet
+      **Model**: claude-sonnet-4
 
 #### 0.2 Training Material Research [2 hours]
 
@@ -333,7 +333,7 @@ dbh-rest-with-jackson/
 - [x] Hands-on exercise design patterns
 - [x] Common pitfalls in REST API training
       **Tools**: Brave Search for training resources, Firecrawl for course outlines
-      **Model**: claude-3-sonnet
+      **Model**: claude-sonnet-4
 
 ### PHASE 1: FOUNDATION (Critical Path - Sequential)
 
@@ -368,7 +368,7 @@ Must be completed first in order. These form the foundation for all exercises.
 - [ ] Add Jackson annotations for JSON mapping
 - [ ] Create ModelMapper utility class
 - **Agent**: backend-developer
-- **Model**: claude-3-sonnet
+- **Model**: claude-sonnet-4
 
 #### 1.3 REST Template [3 hours]
 
@@ -410,7 +410,7 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - [ ] Create REST maturity model assessment worksheet
 - [ ] Design resources for library management system
 - **Agent**: general-purpose
-- **Model**: claude-3-sonnet (medium complexity)
+- **Model**: claude-sonnet-4 (medium complexity)
 
 ##### 2.2 Resource Design Exercise [2 hours]
 
@@ -450,7 +450,7 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - [ ] Implement custom field naming strategies
 - [ ] Work with nested objects and collections
 - **Agent**: backend-developer
-- **Model**: claude-3-sonnet (standard exercise)
+- **Model**: claude-sonnet-4 (standard exercise)
 
 ##### 2.6 Jackson Advanced Exercise [3 hours]
 
@@ -504,7 +504,7 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - [ ] Generate API documentation
 - [ ] Create usage examples
 - **Agent**: documentation-specialist
-- **Model**: claude-3-sonnet (documentation task)
+- **Model**: claude-sonnet-4 (documentation task)
 
 ##### 3.3 Container Deployment [1 hour]
 
@@ -513,7 +513,7 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - [ ] Docker Compose with PostgreSQL
 - [ ] Basic Kubernetes deployment YAML
 - **Agent**: general-purpose
-- **Model**: claude-3-sonnet
+- **Model**: claude-sonnet-4
 
 #### Documentation & Support
 
