@@ -85,7 +85,7 @@ organization and easier sharing with participants.
    - [ ] Jersey setup slides (03-jersey-setup.md)
    - [ ] Jersey CRUD slides (04-jersey-crud.md)
    - [ ] API versioning slides (05-api-versioning.md)
-   - [ ] Basic exercises and solutions
+   - [x] Basic exercises and solutions (Exercise 01 completed)
    - [ ] Versioning implementation guide
 
 1. **Days 4-5: Day 2 Content**
@@ -361,23 +361,23 @@ dbh-rest-with-jackson/
 
 **Note**: Domain models, DTOs, and validation are now EXERCISE TASKS, not base setup
 
-#### 1.3 REST Template [3 hours]
+#### 1.3 REST Template [3 hours] ✅ COMPLETED
 
-- [ ] Create AbstractResource base class
-- [ ] Implement ExampleUserResource with all HTTP methods
-- [ ] Add exception handling (NotFoundException, ValidationException)
-- [ ] Create ErrorResponse DTO
-- [ ] Implement request/response logging filter
+- [x] Create AbstractResource base class
+- [x] Implement ExampleUserResource with all HTTP methods
+- [x] Add exception handling (NotFoundException, ValidationException)
+- [x] Create ErrorResponse DTO
+- [x] Implement request/response logging filter
 - **Agent**: backend-developer
 - **Model**: opus-4.1
 
-#### 1.4 Test Infrastructure [3 hours]
+#### 1.4 Test Infrastructure [3 hours] ✅ COMPLETED
 
-- [ ] Configure JUnit 5 and REST Assured
-- [ ] Create BaseIntegrationTest with server lifecycle
-- [ ] Add TestDataBuilder for entities
-- [ ] Create custom assertions
-- [ ] Write example integration test
+- [x] Configure JUnit 5 and REST Assured
+- [x] Create BaseIntegrationTest with server lifecycle
+- [x] Add TestDataBuilder for entities
+- [x] Create custom assertions
+- [x] Write example integration test
 - **Agent**: backend-developer
 - **Model**: opus-4.1
 
@@ -396,10 +396,10 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - [x] Research common REST anti-patterns
 - [x] Get latest REST API design guidelines
       **Implementation**:
-- [ ] Create exercises/01-rest-basics/exercise.md
-- [ ] Analyze GitHub, Twitter, Spotify APIs for REST principles
-- [ ] Create REST maturity model assessment worksheet
-- [ ] Design resources for library management system
+- [x] Create exercises/01-rest-basics/README.md
+- [x] Create exercises/01-rest-basics/solution.md
+- [x] Create REST principles and HTTP methods exercise
+- [x] Design resources for library management system
 - **Agent**: general-purpose
 - **Model**: claude-sonnet-4 (medium complexity)
 
