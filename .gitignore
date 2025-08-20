@@ -1,6 +1,7 @@
 # Un-ignore plan.md (overrides global gitignore)
 !plan.md
 !PLAN.md
+!CLAUDE.md
 
 # Project-specific ignores
 *.log
