@@ -97,6 +97,34 @@ public class Application {
     }
     
     /**
+     * Creates a configured server for testing purposes.
+     * 
+     * @param port The port to run the server on
+     * @return Configured Jetty server
+     */
+    public static Server createServer(int port) {
+        Server server = new Server(port);
+        
+        // Create servlet context handler with sessions disabled (REST is stateless)
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
+        context.setContextPath(DEFAULT_CONTEXT_PATH);
+        
+        server.setHandler(context);
+        
+        // Configure Jersey servlet
+        ServletHolder jerseyServlet = context.addServlet(ServletContainer.class, API_PATH_SPEC);
+        jerseyServlet.setInitOrder(0);
+        
+        // Tell Jersey where to find the configuration
+        jerseyServlet.setInitParameter(
+            "javax.ws.rs.Application",
+            JerseyConfig.class.getName()
+        );
+        
+        return server;
+    }
+    
+    /**
      * Main entry point for the application.
      * 
      * @param args Command line arguments (optional: port number)

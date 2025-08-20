@@ -144,3 +144,4 @@ curl -X GET http://localhost:8080/api/users
 - [ ] Use Jackson 2.14.x
 - [ ] Lambda expressions OK
 - [ ] Stream API OK
+- no co-authored-by stuff when doing commits
