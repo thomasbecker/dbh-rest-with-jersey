@@ -14,8 +14,85 @@ Target Environment: **Java 8**
 
 <!--
 speaker_note: |
-  Welcome everyone. Introduce yourself and ask about REST experience.
-  Confirm Java 8 setup. Emphasize Jersey focus, not Spring Boot.
+  INTRODUCTION (5 minutes)
+
+  • Welcome everyone to REST API Training with Jersey
+
+  • Introduce yourself:
+    - Your background with REST APIs
+    - Experience with Jersey framework
+    - Years in enterprise Java development
+
+  • Quick participant survey:
+    - "Who has worked with REST APIs before?"
+    - "Any experience with SOAP/XML services?"
+    - "Who's using Spring Boot currently?"
+    - "What are your main API challenges?"
+
+  • Set expectations:
+    - This is Jersey-focused (NOT Spring Boot)
+    - Hands-on approach - 70% coding
+    - Java 8 environment (confirm everyone has it)
+    - We'll build a complete API by end of Day 2
+
+  • Logistics:
+    - Breaks every 60 minutes
+    - Questions welcome anytime
+    - Code will be in GitHub
+    - Pair programming encouraged
+
+  • Key point: Jersey is lighter than Spring Boot
+    - Better for microservices
+    - Less magic, more control
+    - JAX-RS standard compliant
+-->
+
+<!-- end_slide -->
+
+# About Me - Thomas Becker
+
+**Consultant | Senior Developer | Architect | Coach**
+
+## Technical Background
+
+- **Eclipse/Jetty Committer**
+- **Contributor SPDY Specification**
+- Loves concurrent code
+- Performance Tuning Expert
+- JVM Tuning Expert
+
+## Experience
+
+- Doing web- and server applications since **1997**
+- Doing REST since 2006
+
+## When not coding...
+
+🧗 My Children/Soccer/Bouldering/Climbing/Mountainbiking
+
+<!--
+speaker_note: |
+  PERSONAL INTRODUCTION (2 minutes)
+
+  • Highlight relevant experience:
+    - 25+ years in web development
+    - Deep JVM and performance expertise
+    - Open source contributions (Jetty/SPDY)
+    - Twitter introduced REST in 2006
+    - de facto standard for APIs since ~2010-2015
+
+  • Why this matters for the training:
+    - Real-world production experience
+    - Performance-aware API design
+    - Concurrent/async patterns in REST
+    - CI/CD best practices for APIs
+
+  • Quick personal note:
+    - Climbing teaches problem-solving
+    - Similar to debugging complex APIs!
+
+  • Transition:
+    - "Let's start with today's agenda..."
 -->
 
 <!-- end_slide -->
@@ -44,10 +121,24 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  - Theory in the morning, hands-on after lunch
-  - Jersey setup before lunch break
-  - Encourage questions throughout
-  - Adjust pace based on group
+  DAY 1 OVERVIEW (3 minutes)
+
+  • Morning focus:
+    - Theory heavy but interactive
+    - REST fundamentals everyone needs
+    - Jersey framework basics
+    - We'll set up before lunch
+
+  • Afternoon focus:
+    - 70% hands-on coding
+    - CRUD = Create, Read, Update, Delete
+    - Versioning strategies
+    - Error handling patterns
+
+  • Pace management:
+    - Check understanding frequently
+    - Adjust based on questions
+    - Have backup exercises ready
 -->
 
 <!-- end_slide -->
@@ -70,10 +161,26 @@ Architectural style for distributed systems
 
 <!--
 speaker_note: |
-  REST is not a protocol, it's an architectural style.
-  Created by Roy Fielding in 2000 (PhD dissertation).
-  Emphasize constraints that lead to desirable properties.
-  Ask: Who has worked with SOAP? Helps with comparisons.
+  WHAT IS REST? (5 minutes)
+
+  • Key concept: Architectural STYLE not protocol
+    - Like building architecture patterns
+    - Not a specification you implement
+
+  • History context:
+    - Roy Fielding 2000 PhD dissertation
+    - Co-author of HTTP specification
+    - Became mainstream ~2010-2015
+
+  • The 5 constraints (explain each):
+    1. Client-Server: separation of concerns
+    2. Stateless: each request complete
+    3. Uniform Interface: standard methods
+    4. Layered: proxies, gateways allowed
+    5. Cacheable: responses mark cacheability
+
+  • Quick poll: "Who has worked with SOAP?"
+    - Use for comparison throughout
 -->
 
 <!-- end_slide -->
@@ -106,14 +213,141 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  Many have SOAP background. Emphasize REST simplicity.
-  No special tooling needed - curl is enough.
-  JSON has won over XML.
+  REST vs SOAP COMPARISON (4 minutes)
+
+  • If participants know SOAP:
+    - SOAP = heavyweight protocol
+    - REST = lightweight style
+    - WSDL = Web Services Description Language
+    - WSDL vs self-descriptive
+
+  • Key advantages of REST:
+    - Test with curl/browser
+    - No code generation needed
+    - Human readable
+    - Firewall friendly (just HTTP)
+
+  • Format war is over:
+    - JSON won (lighter, JavaScript native)
+    - XML still used in enterprise
+    - We'll focus on JSON
+-->
+
+<!-- end_slide -->
+
+# SOAP vs REST: Real Example
+
+<!-- column_layout: [1, 1] -->
+
+<!-- column: 0 -->
+
+### SOAP (+ WSDL Definition)
+
+```xml
+<!-- WSDL Fragment (50+ lines) -->
+<wsdl:definitions>
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:element name="GetUserDetails">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="UserId"
+                        type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetUserRequest">
+    <wsdl:part element="GetUserDetails"/>
+  </wsdl:message>
+  <!-- ... 30+ more lines ... -->
+</wsdl:definitions>
+```
+
+### Plus SOAP Request:
+
+```xml
+POST /UserService HTTP/1.1
+Content-Type: application/soap+xml
+
+<soap:Envelope xmlns:soap="...">
+  <soap:Body>
+    <GetUserDetails>
+      <UserId>123</UserId>
+    </GetUserDetails>
+  </soap:Body>
+</soap:Envelope>
+```
+
+<!-- column: 1 -->
+
+<!-- pause -->
+
+### REST
+
+```http
+GET /users/123 HTTP/1.1
+Accept: application/json
+```
+
+**That's it!** ✅
+
+<!-- pause -->
+
+### Benefits:
+
+- No WSDL needed
+- No code generation
+- No XML parsing
+- No envelope overhead
+- Self-descriptive
+- Testable with curl
+
+<!-- reset_layout -->
+
+<!-- pause -->
+
+**Result:** Same functionality, 95% less complexity!
+
+<!--
+speaker_note: |
+  SOAP VS REST EXAMPLE (4 minutes)
+
+  • Left side - SOAP nightmare:
+    - WSDL fragment shown is just 20 lines
+    - Real WSDL would be 100-200 lines!
+    - Must define EVERY operation
+    - Complex type definitions
+    - Required for code generation
+    - PLUS the actual SOAP request
+
+  • Right side - REST simplicity:
+    - 2 lines. That's it.
+    - HTTP method tells the action
+    - URL tells the resource
+    - No contracts to maintain
+
+  • Walk through benefits (click to reveal):
+    - No WSDL = no contract hell
+    - No code gen = direct HTTP calls
+    - No XML parsing = faster
+    - JSON smaller than XML
+    - No envelope = less bandwidth
+    - Self-descriptive = intuitive
+    - curl testable = quick debugging
+
+  • Powerful point: "This is why REST won"
+    - Not because it's trendy
+    - Because it's SIMPLE
+    - Complexity kills projects
 -->
 
 <!-- end_slide -->
 
 # HTTP Methods in REST
+
+<!-- pause -->
 
 ```http +line_numbers
 GET     - Retrieve resources
@@ -132,11 +366,35 @@ DELETE  - Remove resources
 
 <!--
 speaker_note: |
-  Safe = doesn't change server state
-  Idempotent = same result if called multiple times
-  POST is neither safe nor idempotent
-  PATCH is relatively new, not all APIs support it
-  PUT should replace entire resource
+  HTTP METHODS (5 minutes)
+
+  • Method meanings:
+    - GET: retrieve (like SELECT)
+    - POST: create new (like INSERT)
+    - PUT: full replace (like UPDATE)
+    - PATCH: partial update (newer)
+    - DELETE: remove (like DELETE)
+
+  • Also mention (not shown on slide):
+    - OPTIONS: returns allowed methods for resource
+      Example: "What can I do with /users/123?"
+      Returns: Allow: GET, PUT, DELETE, OPTIONS
+    - HEAD: like GET but only returns headers
+      Use case: Check if resource exists or modified
+      No body returned, saves bandwidth
+
+  • Critical concepts:
+    - SAFE: doesn't modify data (GET, HEAD, OPTIONS)
+    - IDEMPOTENT: repeated calls = same result
+
+  • Idempotency examples:
+    - GET: always idempotent ✓
+    - PUT: idempotent (replaces) ✓
+    - DELETE: idempotent (already gone) ✓
+    - POST: NOT idempotent (creates new) ✗
+    - HEAD/OPTIONS: idempotent ✓
+
+  • Common mistake: Using POST for everything
 -->
 
 <!-- end_slide -->
@@ -161,9 +419,24 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  Resources are key abstraction. Think nouns, not actions.
-  Can have multiple representations (JSON, XML, HTML).
-  URIs should be intuitive and hierarchical.
+  REST RESOURCES (4 minutes)
+
+  • Core concept: Everything is a resource
+    - Like database tables/entities
+    - Identified by URIs (URLs)
+
+  • Think NOUNS not VERBS:
+    - ✓ /users (noun)
+    - ✗ /getUsers (verb)
+
+  • URI design principles:
+    - Hierarchical: /users/123/orders
+    - Predictable: developers can guess
+    - Plural: /users not /user
+
+  • Multiple representations:
+    - Same resource, different formats
+    - Content negotiation decides
 -->
 
 <!-- end_slide -->
@@ -201,11 +474,25 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  Don't just use 200 for everything!
-  201 should include Location header
-  204 for successful DELETE
-  401 vs 403: Authentication vs Authorization
-  Never expose stack traces in 500 errors
+  HTTP STATUS CODES (5 minutes)
+
+  • Success (2xx):
+    - 200 OK: general success
+    - 201 Created: new resource (needs Location header!)
+    - 204 No Content: success, nothing to return (DELETE)
+
+  • Client errors (4xx):
+    - 400 Bad Request: malformed request
+    - 401 Unauthorized: who are you?
+    - 403 Forbidden: I know you, but no access
+    - 404 Not Found: resource doesn't exist
+
+  • Server errors (5xx):
+    - 500 Internal Error: our fault
+    - 503 Unavailable: temporary issue
+
+  • Security tip: NEVER expose stack traces in 500s
+  • Common mistake: Always returning 200
 -->
 
 <!-- end_slide -->
@@ -227,8 +514,24 @@ POST /api/endpoint
 
 <!--
 speaker_note: |
-  POX = Plain Old XML/JSON. This is RPC over HTTP.
-  Many legacy "REST" APIs are Level 0.
+  RICHARDSON MODEL - LEVEL 0 (3 minutes)
+
+  • Level 0 = "Swamp of POX"
+    - POX = Plain Old XML/JSON
+    - Just RPC over HTTP
+    - Single endpoint, single method
+
+  • Example shown:
+    - Everything goes to /api/endpoint
+    - Method in payload ("getUser")
+    - This is NOT REST!
+
+  • Common in:
+    - Legacy enterprise systems
+    - SOAP-to-REST migrations
+    - Quick and dirty APIs
+
+  https://martinfowler.com/articles/richardsonMaturityModel.htmlhttps://martinfowler.com/articles/richardsonMaturityModel.html
 -->
 
 <!-- end_slide -->
@@ -259,9 +562,24 @@ DELETE /api/orders/456
 
 <!--
 speaker_note: |
-  Most REST APIs reach Level 2 and stop.
-  Level 2 is "good enough" for most cases.
-  This is our training focus.
+  RICHARDSON LEVELS 1-2 (4 minutes)
+
+  • Level 1: Resources
+    - Multiple URIs ✓
+    - Still using POST for everything ✗
+    - Better than Level 0
+
+  • Level 2: HTTP Verbs
+    - Correct methods (GET, POST, PUT, DELETE) ✓
+    - Proper status codes ✓
+    - THIS IS OUR TARGET!
+
+  • Industry reality:
+    - 90% of APIs stop at Level 2
+    - Good enough for most use cases
+    - Level 3 adds complexity
+
+  • We'll focus on solid Level 2
 -->
 
 <!-- end_slide -->
@@ -292,10 +610,24 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  HATEOAS = Hypermedia as Engine of Application State
-  Clients discover actions through links
-  Very few APIs actually implement this
-  Adds complexity that may not be needed
+  RICHARDSON LEVEL 3 - HATEOAS (3 minutes)
+
+  • HATEOAS = Hypermedia as Engine of Application State
+    - Long acronym, simple idea
+    - Response includes next actions
+    - Like web pages with links
+
+  • Example shows:
+    - _links section with actions
+    - Client discovers what's possible
+    - No hardcoded URLs in client
+
+  • Reality check:
+    - <10% of APIs implement this
+    - Adds complexity
+    - Clients often don't use it
+
+  • We'll mention but not implement
 -->
 
 <!-- end_slide -->
@@ -322,9 +654,25 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  Conventions, not rules. Consistency matters most.
-  Some prefer singular nouns - pick one and stick with it.
-  Hierarchical URIs show relationships.
+  REST BEST PRACTICES (4 minutes)
+
+  • Practice 1: Nouns not verbs
+    - Resources are things, not actions
+    - Let HTTP method be the verb
+
+  • Practice 2: Plural nouns
+    - Controversial but common
+    - /users not /user
+    - Consistency > perfection
+
+  • Practice 3: Hierarchical URIs
+    - Show relationships in path
+    - /users/123/orders/456
+    - Intuitive navigation
+
+  • Remember: Guidelines not laws!
+    - Team consistency matters most
+    - Document your choices
 -->
 
 <!-- end_slide -->
@@ -355,10 +703,24 @@ Content-Type: application/json
 
 <!--
 speaker_note: |
-  Accept header: what client wants
-  Content-Type: what server sends
-  Can support multiple formats per endpoint
-  Quality values (q=0.9) for preference ordering
+  CONTENT NEGOTIATION (4 minutes)
+
+  • How client and server agree on format:
+
+  • Request headers:
+    - Accept: what client wants
+    - "application/json" or "application/xml"
+
+  • Response headers:
+    - Content-Type: what server sends
+    - Must match or be compatible
+
+  • Advanced:
+    - Quality values: Accept: application/json;q=0.9
+    - Multiple formats per endpoint
+    - Server picks best match
+
+  • We'll mostly use JSON
 -->
 
 <!-- end_slide -->
@@ -393,9 +755,26 @@ GET /users/show
 
 <!--
 speaker_note: |
-  Real production examples. Notice patterns - plural nouns, clear hierarchy.
-  GitHub uses hypermedia (Level 3). Twitter is Level 2.
-  Both successful - pragmatism wins.
+  REAL-WORLD EXAMPLES (3 minutes)
+
+  • GitHub API:
+    - Level 3 (has hypermedia)
+    - Excellent documentation
+    - Good example to study
+
+  • Twitter API:
+    - Level 2 (our target)
+    - Simpler, still successful
+    - More typical approach
+
+  • Key observations:
+    - Both use plural nouns
+    - Clear hierarchies
+    - Consistent patterns
+
+  • Lesson: Pragmatism > Purity
+    - Don't over-engineer
+    - Level 2 is production-ready
 -->
 
 <!-- end_slide -->
@@ -413,13 +792,26 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  Split into groups of 2-3
-  Use browser or curl to explore
-  Look at documentation first
-  GitHub: api.github.com
-  Twitter: developer.twitter.com
-  Spotify: developer.spotify.com
-  Walk around and help groups
+  EXERCISE 1 - API ANALYSIS (15 minutes)
+
+  • Setup (2 min):
+    - Groups of 2-3 people
+    - Pick one API to analyze
+    - Open documentation first
+
+  • APIs to explore:
+    - GitHub: api.github.com (no auth needed)
+    - Twitter: developer.twitter.com (need account)
+    - Spotify: developer.spotify.com (need account)
+
+  • What to look for:
+    - REST principles applied
+    - Richardson level (probably 2)
+    - Any anti-patterns?
+    - Good patterns to copy?
+
+  • Teacher: Walk around, help stuck groups
+  • Debrief: 5 min discussion after
 -->
 
 <!-- end_slide -->
@@ -450,8 +842,27 @@ POST /api/users/delete/123
 
 <!--
 speaker_note: |
-  Common in enterprise APIs. Result from RPC mindset or not understanding HTTP.
-  We'll avoid these in Jersey implementation.
+  COMMON ANTI-PATTERNS (4 minutes)
+
+  • Anti-pattern 1: Verbs in URLs
+    - Shows RPC thinking
+    - /getUser → should be GET /users
+
+  • Anti-pattern 2: Wrong HTTP methods
+    - POST /users/delete/123
+    - Should be DELETE /users/123
+
+  • Anti-pattern 3: Status code abuse
+    - Always 200 with error in body
+    - Breaks HTTP semantics
+    - Tools/proxies can't understand
+
+  • Why these happen:
+    - SOAP/RPC background
+    - Not understanding HTTP
+    - Quick migrations
+
+  • We'll do it RIGHT from start!
 -->
 
 <!-- end_slide -->
@@ -483,11 +894,27 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  We'll implement JWT in Day 2
-  Basic Auth simple but credentials sent every request
-  API Keys good for service-to-service
-  OAuth complex but powerful for user delegation
-  Never trust client input
+  SECURITY OVERVIEW (5 minutes)
+
+  • Authentication methods:
+    - Basic Auth: simple, credentials every request
+    - API Keys: good for service-to-service
+    - OAuth 2.0: complex, for user delegation
+    - JWT: our focus tomorrow (stateless tokens)
+
+  • Security best practices:
+    - HTTPS always (not optional!)
+    - Validate ALL inputs
+    - Rate limiting (prevent abuse)
+    - Audit logging (who did what)
+    - CORS config (browser security)
+
+  • Golden rule: NEVER trust client input
+    - Validate everything
+    - Sanitize data
+    - Check permissions
+
+  • Tomorrow: Full JWT implementation
 -->
 
 <!-- end_slide -->
@@ -522,10 +949,27 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  GraphQL solves some REST problems but adds complexity.
-  REST still dominant in enterprise.
-  Jersey doesn't support GraphQL.
-  Good to know trade-offs.
+  REST VS GRAPHQL (3 minutes)
+
+  • REST characteristics:
+    - Multiple endpoints (one per resource)
+    - Fixed response structure
+    - Over/under fetching common
+    - Simple, well understood
+
+  • GraphQL characteristics:
+    - Single endpoint
+    - Client specifies what it needs
+    - Solves over-fetching
+    - More complex to implement
+
+  • Why REST for this training:
+    - REST still 90% of APIs
+    - Enterprise standard
+    - Jersey is REST-only
+    - GraphQL = different training
+
+  • Key point: REST is NOT obsolete!
 -->
 
 <!-- end_slide -->
@@ -548,11 +992,27 @@ How to model your API resources effectively
 
 <!--
 speaker_note: |
-  Quick recap of main points
-  Check for questions before moving on
-  Resource design is critical for good APIs
-  We'll design a complete e-commerce API
-  Take 5 minute break before Module 2
+  MODULE 1 SUMMARY (5 minutes)
+
+  • Key takeaways:
+    - REST = architectural style, not protocol
+    - Resources + HTTP methods + status codes
+    - Stateless by design
+    - Multiple formats (we use JSON)
+
+  • What we learned:
+    - 5 REST constraints
+    - Richardson Level 2 is our target
+    - Best practices (nouns, plural, hierarchy)
+    - Common anti-patterns to avoid
+
+  • Coming next:
+    - Module 2: Resource Design
+    - How to model your domain
+    - E-commerce example
+
+  • Quick break: 5 minutes
+  • Questions? Note them for later
 -->
 
 <!-- end_slide -->
@@ -563,7 +1023,21 @@ speaker_note: |
 
 <!--
 speaker_note: |
-  Address remaining questions. Note complex ones for later.
-  Mention practical implementation after lunch.
-  Encourage thinking about their own APIs.
+  Q&A SESSION (5-10 minutes flexible)
+
+  • Common questions to expect:
+    - \"Why not Spring Boot?\" → Lighter, less magic
+    - \"PATCH vs PUT?\" → PATCH partial, PUT full
+    - \"Version in URL or header?\" → Module 5
+    - \"How to handle auth?\" → Tomorrow
+
+  • If no questions:
+    - \"Think about your current APIs\"
+    - \"What would you redesign?\"
+    - \"Any anti-patterns you recognize?\"
+
+  • Wrap up:
+    - \"Implementation starts after lunch\"
+    - \"Module 2 next: Resource Design\"
+    - \"5 minute break\"
 -->
