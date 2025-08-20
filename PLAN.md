@@ -80,17 +80,22 @@ organization and easier sharing with participants.
 
 1. **Days 1-3: Day 1 Content**
 
-   - REST fundamentals slides
-   - Jersey introduction materials
-   - Basic exercises and solutions
-   - Versioning implementation guide
+   - [x] REST fundamentals slides (01-rest-fundamentals.md)
+   - [x] Resource design slides (02-resource-design.md)
+   - [ ] Jersey setup slides (03-jersey-setup.md)
+   - [ ] Jersey CRUD slides (04-jersey-crud.md)
+   - [ ] API versioning slides (05-api-versioning.md)
+   - [ ] Basic exercises and solutions
+   - [ ] Versioning implementation guide
 
 1. **Days 4-5: Day 2 Content**
 
-   - Jackson integration slides
-   - Security implementation guides
-   - Advanced exercises
-   - Showcase preparations
+   - [ ] Jackson basics slides (06-jackson-basics.md)
+   - [ ] Jackson advanced slides (07-jackson-advanced.md)
+   - [ ] Security implementation slides (08-security-implementation.md)
+   - [ ] Security implementation guides
+   - [ ] Advanced exercises
+   - [ ] Showcase preparations
 
 1. **Days 6-8: Exercise Development**
 
@@ -182,7 +187,15 @@ organization and easier sharing with participants.
 
 1. **Slide Decks**
 
-   - 8 comprehensive modules
+   - 8 comprehensive modules (2 of 8 completed)
+     - [x] 01-rest-fundamentals.md
+     - [x] 02-resource-design.md
+     - [ ] 03-jersey-setup.md
+     - [ ] 04-jersey-crud.md
+     - [ ] 05-api-versioning.md
+     - [ ] 06-jackson-basics.md
+     - [ ] 07-jackson-advanced.md
+     - [ ] 08-security-implementation.md
    - Code examples included
    - Visual diagrams
    - Progressive complexity
@@ -523,12 +536,32 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - **Agent**: documentation-specialist
 - **Model**: opus-4.1
 
-##### 3.6 Slides and Presentations [6 hours]
+##### 3.6 Slides and Presentations [8 hours total]
 
-- [x] Create slides/ folder with module presentations
-- [x] Visual diagrams for REST concepts (partial - slides 01-02)
-- [ ] Code examples and live coding notes
-- [ ] Architecture diagrams
+**Slide Creation Tasks by Module:**
+
+**Day 1 Slides:**
+
+- [x] Create slides/presenterm/01-rest-fundamentals.md - HTTP/REST Basics (75 min content)
+- [x] Create slides/presenterm/02-resource-design.md - Resource Orientation & REST Principles (60 min content)
+- [ ] Create slides/presenterm/03-jersey-setup.md - Plain Java with Jersey Setup (60 min content)
+- [ ] Create slides/presenterm/04-jersey-crud.md - Building REST Controllers with Jersey (90 min content)
+- [ ] Create slides/presenterm/05-api-versioning.md - API Versioning Strategies (60 min content)
+
+**Day 2 Slides:**
+
+- [ ] Create slides/presenterm/06-jackson-basics.md - Jackson Integration with Jersey (90 min content)
+- [ ] Create slides/presenterm/07-jackson-advanced.md - Advanced Jackson Features (60 min content)
+- [ ] Create slides/presenterm/08-security-implementation.md - Security Fundamentals & Implementation (90 min content)
+
+**Supporting Materials:**
+
+- [x] Create slides/ folder structure
+- [x] Visual diagrams for REST concepts (in slides 01-02)
+- [ ] Code examples and live coding notes for each module
+- [ ] Architecture diagrams for system design topics
+- [ ] Create master presentation index/README
+
 - **Agent**: general-purpose
 - **Model**: opus-4.1 (visual content creation)
 
