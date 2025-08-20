@@ -339,23 +339,23 @@ dbh-rest-with-jackson/
 
 Must be completed first in order. These form the foundation for all exercises.
 
-#### 1.1 Base Project Setup [4 hours]
+#### 1.1 Base Project Setup [4 hours] ✅ COMPLETED
 
 **Pre-task Research**:
 
-- [ ] Research Gradle configurations for Jersey 2.35 (Context7)
-- [ ] Find optimal Jetty embedded server setup
-- [ ] Research CORS filter best practices
-- [ ] Find logging configurations for REST APIs
+- [x] Research Gradle configurations for Jersey 2.35 (Context7)
+- [x] Find optimal Jetty embedded server setup
+- [x] Research CORS filter best practices
+- [x] Find logging configurations for REST APIs
       **Implementation**:
 
-- [ ] Create `base-project/` folder structure
-- [ ] Configure build.gradle with Jersey 2.35, Jackson 2.14, Java 8
-- [ ] Set up embedded Jetty server on port 8080
-- [ ] Configure SLF4J + Logback logging
-- [ ] Create Application.java main class
-- [ ] Add CORS filter configuration
-- [ ] Write README with setup instructions
+- [x] Create `base-project/` folder structure
+- [x] Configure build.gradle with Jersey 2.35, Jackson 2.14, Java 8
+- [x] Set up embedded Jetty server on port 8080
+- [x] Configure SLF4J + Logback logging
+- [x] Create Application.java main class
+- [x] Add CORS filter configuration
+- [x] Write README with setup instructions
 - **Agent**: tech-lead-orchestrator
 - **Model**: opus-4.1 (architecture decisions)
 
