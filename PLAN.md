@@ -403,18 +403,9 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - **Agent**: general-purpose
 - **Model**: claude-sonnet-4 (medium complexity)
 
-##### 2.2 Resource Design Exercise [2 hours]
+##### 2.2 Jersey CRUD Exercise [3 hours]
 
-- [ ] Create exercises/02-resource-design/
-- [ ] Model blog system with posts, comments, tags
-- [ ] Define URI structure following REST conventions
-- [ ] Create state transition diagrams
-- **Agent**: api-architect
-- **Model**: opus-4.1
-
-##### 2.3 Jersey CRUD Exercise [3 hours]
-
-- [ ] Create exercises/03-jersey-crud/
+- [ ] Create exercises/02-jersey-crud/
 - [ ] **Trainees implement**: Complete User model fields
 - [ ] **Trainees implement**: Create UserResource from scratch
 - [ ] **Trainees implement**: Add CRUD operations (GET, POST, PUT, DELETE)
@@ -423,9 +414,9 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - **Agent**: backend-developer
 - **Model**: opus-4.1 (complex CRUD patterns)
 
-##### 2.3b Bean Validation Exercise [1 hour]
+##### 2.3 Bean Validation Exercise [1 hour]
 
-- [ ] Create exercises/03b-bean-validation/
+- [ ] Create exercises/03-bean-validation/
 - [ ] **Trainees add**: Validation annotations to their User model
 - [ ] **Trainees implement**: @Valid in UserResource methods
 - [ ] **Trainees create**: Custom validator for email uniqueness
@@ -436,7 +427,7 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 ##### 2.4 API Versioning Exercise [3 hours]
 
-- [ ] Create exercises/04-versioning/
+- [ ] Create exercises/04-api-versioning/
 - [ ] Implement /v1/users and /v2/users endpoints
 - [ ] Add header-based versioning
 - [ ] Create migration guide between versions
@@ -445,9 +436,29 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 #### Day 2 Training Exercises
 
-##### 2.5 Jackson Basics Exercise [3 hours]
+##### 2.5 Exception Handling Exercise [2 hours]
 
-- [ ] Create exercises/05-jackson-basics/
+- [ ] Create exercises/05-exception-handling/
+- [ ] Implement global exception handler
+- [ ] Create custom exceptions
+- [ ] Map exceptions to HTTP status codes
+- [ ] Return consistent error responses
+- **Agent**: backend-developer
+- **Model**: claude-sonnet-4
+
+##### 2.6 Pagination & Filtering Exercise [2 hours]
+
+- [ ] Create exercises/06-pagination-filtering/
+- [ ] Implement pagination with limit/offset
+- [ ] Add sorting capabilities
+- [ ] Create filtering by multiple fields
+- [ ] Add search functionality
+- **Agent**: backend-developer
+- **Model**: claude-sonnet-4
+
+##### 2.7 Jackson Basics Exercise [3 hours]
+
+- [ ] Create exercises/07-jackson-basics/
 - [ ] Configure Jackson ObjectMapper
 - [ ] Handle date/time serialization
 - [ ] Implement custom field naming strategies
@@ -455,16 +466,16 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - **Agent**: backend-developer
 - **Model**: claude-sonnet-4 (standard exercise)
 
-##### 2.6 Jackson Advanced Exercise [3 hours]
+##### 2.8 Jackson Advanced Exercise [3 hours]
 
-- [ ] Create exercises/06-jackson-advanced/
+- [ ] Create exercises/08-jackson-advanced/
 - [ ] Create custom serializers/deserializers
 - [ ] Implement polymorphic type handling
 - [ ] Add JSON Views for different representations
 - **Agent**: backend-developer
 - **Model**: opus-4.1
 
-##### 2.7 Security Implementation Exercises [6 hours]
+##### 2.9 Security Implementation Exercise [4 hours]
 
 **Pre-task Research** (Critical - Use all tools):
 
@@ -476,9 +487,7 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - [x] OWASP REST Security guidelines (Firecrawl)
 - [x] Role-based access control patterns
       **Implementation**:
-- [ ] Create exercises/07-security-basic/ - Basic Authentication
-- [ ] Create exercises/08-security-jwt/ - JWT tokens
-- [ ] Create exercises/09-security-apikey/ - API Key management
+- [ ] Create exercises/09-security-implementation/
 - [ ] Implement authentication filters
 - [ ] Add role-based authorization
 - [ ] Create security test suite
@@ -520,9 +529,19 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 #### Documentation & Support
 
+##### 2.10 Testing REST APIs Exercise [3 hours]
+
+- [ ] Create exercises/10-testing/
+- [ ] Write integration tests with REST Assured
+- [ ] Test error scenarios
+- [ ] Mock external dependencies
+- [ ] Create test data builders
+- **Agent**: backend-developer
+- **Model**: claude-sonnet-4
+
 ##### 3.4 Final Comprehensive Exercise [4 hours]
 
-- [ ] Create exercises/10-final-project/
+- [ ] Create exercises/11-final-project/
 - [ ] Build complete e-commerce REST API
 - [ ] Combine all learned concepts
 - [ ] Include test suite and documentation

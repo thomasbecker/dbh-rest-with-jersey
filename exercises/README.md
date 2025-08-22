@@ -11,14 +11,14 @@ Each exercise directory contains:
 ## Exercise List
 
 1. **01-rest-basics** - REST fundamentals, HTTP methods, status codes, URI design
-2. **02-resource-design** - Designing resources and relationships
-3. **03-jersey-crud** - Implementing CRUD operations with Jersey
-4. **04-bean-validation** - Adding validation to your REST API
+2. **02-jersey-crud** - Implementing CRUD operations with Jersey
+3. **03-bean-validation** - Adding validation to your REST API
+4. **04-api-versioning** - Implementing API versioning strategies
 5. **05-exception-handling** - Proper error handling and responses
 6. **06-pagination-filtering** - Implementing pagination and filtering
 7. **07-jackson-basics** - JSON serialization with Jackson
 8. **08-jackson-advanced** - Advanced Jackson features
-9. **09-security** - Implementing API security
+9. **09-security-implementation** - Implementing API security
 10. **10-testing** - Testing REST APIs
 
 ## How to Work on Exercises

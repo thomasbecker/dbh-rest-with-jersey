@@ -14,14 +14,14 @@ Each solution directory contains:
 ## Solution List
 
 1. **01-rest-basics** - REST fundamentals solutions
-2. **02-resource-design** - Resource design patterns and solutions
-3. **03-jersey-crud** - Complete CRUD implementation
-4. **04-bean-validation** - Validation implementation examples
+2. **02-jersey-crud** - Complete CRUD implementation
+3. **03-bean-validation** - Validation implementation examples
+4. **04-api-versioning** - API versioning strategies
 5. **05-exception-handling** - Exception handling patterns
 6. **06-pagination-filtering** - Pagination and filtering implementation
 7. **07-jackson-basics** - Jackson configuration and usage
 8. **08-jackson-advanced** - Advanced Jackson techniques
-9. **09-security** - Security implementation examples
+9. **09-security-implementation** - Security implementation examples
 10. **10-testing** - Complete test suites
 
 ## Usage Guidelines
