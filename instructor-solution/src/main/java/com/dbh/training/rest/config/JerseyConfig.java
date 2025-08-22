@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.dbh.training.rest.filters.CORSFilter;
 import com.dbh.training.rest.filters.LoggingFilter;
-import com.dbh.training.rest.mappers.GlobalExceptionMapper;
 
 /**
  * Jersey configuration class that sets up:
@@ -35,15 +34,12 @@ public class JerseyConfig extends ResourceConfig {
         register(JacksonFeature.class);
         register(JacksonConfig.class);
         
-        // Register filters
-        register(CORSFilter.class);
-        register(LoggingFilter.class);
+        // Register filters (commented out for Exercise 02)
+        // register(CORSFilter.class);
+        // register(LoggingFilter.class);
         
-        // Register exception mapper
-        register(GlobalExceptionMapper.class);
-        
-        // Enable sending validation errors to client
-        property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
+        // Disable validation for Exercise 02 (will be enabled in Exercise 03)
+        // property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);
         
         // Disable automatic Wadl generation (optional)
         property(ServerProperties.WADL_FEATURE_DISABLE, true);

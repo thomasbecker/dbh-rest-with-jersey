@@ -1,9 +1,9 @@
 package com.dbh.training.rest.resources;
 
 import com.dbh.training.rest.models.User;
+import com.dbh.training.rest.test.BaseIntegrationTest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,19 +20,15 @@ import static org.hamcrest.Matchers.*;
  * 
  * Note: Each test is independent and creates its own test data.
  */
-public class UserResourceTest {
+public class UserResourceTest extends BaseIntegrationTest {
     
-    private static String BASE_URI = "http://localhost:8080";
-    private static String BASE_PATH = "/api/users";
-    
-    @BeforeAll
-    public static void setup() {
-        RestAssured.baseURI = BASE_URI;
-        RestAssured.basePath = BASE_PATH;
-    }
-    
+    @Override
     @BeforeEach
-    public void resetData() {
+    public void setupTest() {
+        super.setupTest();
+        // The base path is already set to /api by BaseIntegrationTest
+        // Tests will use paths relative to /api (e.g., "/users", "/users/1")
+        
         // Clear all users before each test to ensure test independence
         // Using package-private method for clean test isolation
         UserResource.resetForTesting();
@@ -44,7 +40,7 @@ public class UserResourceTest {
         given()
             .accept(ContentType.JSON)
         .when()
-            .get()
+            .get("/users")
         .then()
             .statusCode(200)
             .contentType(ContentType.JSON)
@@ -63,7 +59,7 @@ public class UserResourceTest {
         given()
             .accept(ContentType.JSON)
         .when()
-            .get()
+            .get("/users")
         .then()
             .statusCode(200)
             .contentType(ContentType.JSON)
@@ -86,7 +82,7 @@ public class UserResourceTest {
                 .contentType(ContentType.JSON)
                 .body(newUser)
             .when()
-                .post()
+                .post("/users")
             .then()
                 .statusCode(201)
                 .contentType(ContentType.JSON)
@@ -103,7 +99,7 @@ public class UserResourceTest {
         given()
             .accept(ContentType.JSON)
         .when()
-            .get("/{id}", userId)
+            .get("/users/{id}", userId)
         .then()
             .statusCode(200)
             .body("username", equalTo("johndoe"));
@@ -119,7 +115,7 @@ public class UserResourceTest {
         given()
             .accept(ContentType.JSON)
         .when()
-            .get("/{id}", userId)
+            .get("/users/{id}", userId)
         .then()
             .statusCode(200)
             .contentType(ContentType.JSON)
@@ -137,7 +133,7 @@ public class UserResourceTest {
         given()
             .accept(ContentType.JSON)
         .when()
-            .get("/{id}", 99999)
+            .get("/users/{id}", 99999)
         .then()
             .statusCode(404);
     }
@@ -159,7 +155,7 @@ public class UserResourceTest {
             .contentType(ContentType.JSON)
             .body(updatedUser)
         .when()
-            .put("/{id}", userId)
+            .put("/users/{id}", userId)
         .then()
             .statusCode(200)
             .contentType(ContentType.JSON)
@@ -170,7 +166,7 @@ public class UserResourceTest {
         given()
             .accept(ContentType.JSON)
         .when()
-            .get("/{id}", userId)
+            .get("/users/{id}", userId)
         .then()
             .statusCode(200)
             .body("email", equalTo("updated@example.com"))
@@ -191,7 +187,7 @@ public class UserResourceTest {
             .contentType(ContentType.JSON)
             .body(updateUser)
         .when()
-            .put("/{id}", 99999)
+            .put("/users/{id}", 99999)
         .then()
             .statusCode(404);
     }
@@ -204,7 +200,7 @@ public class UserResourceTest {
         // When: Delete the user
         given()
         .when()
-            .delete("/{id}", userId)
+            .delete("/users/{id}", userId)
         .then()
             .statusCode(204);
         
@@ -212,7 +208,7 @@ public class UserResourceTest {
         given()
             .accept(ContentType.JSON)
         .when()
-            .get("/{id}", userId)
+            .get("/users/{id}", userId)
         .then()
             .statusCode(404);
     }
@@ -223,7 +219,7 @@ public class UserResourceTest {
         // Then: Should return 404
         given()
         .when()
-            .delete("/{id}", 99999)
+            .delete("/users/{id}", 99999)
         .then()
             .statusCode(404);
     }
@@ -240,7 +236,7 @@ public class UserResourceTest {
             .contentType(ContentType.JSON)
             .body(user)
         .when()
-            .post()
+            .post("/users")
         .then()
             .statusCode(201)
             .extract()

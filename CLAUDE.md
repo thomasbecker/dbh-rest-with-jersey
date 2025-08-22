@@ -175,6 +175,14 @@ git diff main..HEAD -- instructor-solution/src/main/java/com/dbh/training/rest/r
 git checkout main
 ```
 
+## Java 8 Setup Required
+
+**IMPORTANT**: This project requires Java 8 to run. Use:
+```bash
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home
+# Or your Java 8 path
+```
+
 ## Java 8 Compatibility Checklist
 
 - [ ] No var keyword
