@@ -13,16 +13,17 @@ Each solution directory contains:
 
 ## Solution List
 
+### Day 1 Solutions
 1. **01-rest-basics** - REST fundamentals solutions
 2. **02-jersey-crud** - Complete CRUD implementation
-3. **03-bean-validation** - Validation implementation examples
-4. **04-api-versioning** - API versioning strategies
-5. **05-exception-handling** - Exception handling patterns
-6. **06-pagination-filtering** - Pagination and filtering implementation
-7. **07-jackson-basics** - Jackson configuration and usage
-8. **08-jackson-advanced** - Advanced Jackson techniques
-9. **09-security-implementation** - Security implementation examples
-10. **10-testing** - Complete test suites
+3. **03-bean-validation** - Validation implementation
+4. **04-api-versioning** - API versioning solution
+
+### Day 2 Solutions
+5. **05-jackson-basics** - Jackson configuration and usage
+6. **06-jackson-advanced** - Advanced Jackson techniques
+7. **07-security-implementation** - Security implementation
+8. **08-comprehensive** - Complete final project solution
 
 ## Usage Guidelines
 

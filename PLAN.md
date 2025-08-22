@@ -403,96 +403,66 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 - **Agent**: general-purpose
 - **Model**: claude-sonnet-4 (medium complexity)
 
-##### 2.2 Jersey CRUD Exercise [3 hours]
+##### 2.2 Jersey CRUD Exercise [45-50 min within 75 min slot]
 
 - [ ] Create exercises/02-jersey-crud/
-- [ ] **Trainees implement**: Complete User model fields
-- [ ] **Trainees implement**: Create UserResource from scratch
-- [ ] **Trainees implement**: Add CRUD operations (GET, POST, PUT, DELETE)
-- [ ] **Trainees implement**: Basic error handling
+- [ ] **Trainees implement**: Complete User model (partial starter provided)
+- [ ] **Trainees implement**: Add GET and POST operations
+- [ ] **Trainees implement**: Add PUT and DELETE operations
+- [ ] **Trainees implement**: Basic error handling for 404
 - [ ] Provide test cases they must pass
-- **Agent**: backend-developer
-- **Model**: opus-4.1 (complex CRUD patterns)
-
-##### 2.3 Bean Validation Exercise [1 hour]
-
-- [ ] Create exercises/03-bean-validation/
-- [ ] **Trainees add**: Validation annotations to their User model
-- [ ] **Trainees implement**: @Valid in UserResource methods
-- [ ] **Trainees create**: Custom validator for email uniqueness
-- [ ] **Trainees handle**: ConstraintViolationException in mapper
-- [ ] Provide test data with invalid inputs
-- **Agent**: backend-developer
+- **Note**: Fits within "Building REST Controllers with Jersey" (Day 1 PM)
 - **Model**: claude-sonnet-4
 
-##### 2.4 API Versioning Exercise [3 hours]
+##### 2.3 Bean Validation Exercise [15-20 min within 30 min slot]
+
+- [ ] Create exercises/03-bean-validation/
+- [ ] **Trainees add**: Validation annotations to User model
+- [ ] **Trainees implement**: @Valid in POST/PUT methods
+- [ ] **Trainees test**: With provided invalid data
+- [ ] Provide clear validation requirements
+- **Note**: Fits within "Bean Validation with Jersey" (Day 1 PM)
+- **Model**: claude-sonnet-4
+
+##### 2.4 API Versioning Exercise [20-25 min within 45 min slot]
 
 - [ ] Create exercises/04-api-versioning/
-- [ ] Implement /v1/users and /v2/users endpoints
-- [ ] Add header-based versioning
-- [ ] Create migration guide between versions
-- **Agent**: api-architect
-- **Model**: opus-4.1
+- [ ] **Trainees implement**: Simple /v1 to /v2 migration
+- [ ] **Trainees add**: One new field in v2
+- [ ] **Trainees test**: Both versions work
+- **Note**: Fits within "API Versioning Strategies" (Day 1 PM)
+- **Model**: claude-sonnet-4
 
 #### Day 2 Training Exercises
 
-##### 2.5 Exception Handling Exercise [2 hours]
+##### 2.5 Jackson Basics Exercise [45 min within 90 min slot]
 
-- [ ] Create exercises/05-exception-handling/
-- [ ] Implement global exception handler
-- [ ] Create custom exceptions
-- [ ] Map exceptions to HTTP status codes
-- [ ] Return consistent error responses
-- **Agent**: backend-developer
+- [ ] Create exercises/05-jackson-basics/
+- [ ] **Trainees configure**: Jackson ObjectMapper
+- [ ] **Trainees implement**: Date formatting
+- [ ] **Trainees add**: @JsonProperty annotations
+- [ ] **Trainees test**: Serialization/deserialization
+- **Note**: Fits within "Jackson Integration" (Day 2 AM)
 - **Model**: claude-sonnet-4
 
-##### 2.6 Pagination & Filtering Exercise [2 hours]
+##### 2.6 Jackson Advanced Exercise [30 min within 60 min slot]
 
-- [ ] Create exercises/06-pagination-filtering/
-- [ ] Implement pagination with limit/offset
-- [ ] Add sorting capabilities
-- [ ] Create filtering by multiple fields
-- [ ] Add search functionality
-- **Agent**: backend-developer
+- [ ] Create exercises/06-jackson-advanced/
+- [ ] **Trainees create**: One custom serializer
+- [ ] **Trainees implement**: @JsonIgnore and @JsonView
+- [ ] **Trainees test**: Different JSON representations
+- **Note**: Fits within "Advanced Jackson Features" (Day 2 AM)
 - **Model**: claude-sonnet-4
 
-##### 2.7 Jackson Basics Exercise [3 hours]
+##### 2.7 Security Implementation Exercise [30-40 min within 60 min slot]
 
-- [ ] Create exercises/07-jackson-basics/
-- [ ] Configure Jackson ObjectMapper
-- [ ] Handle date/time serialization
-- [ ] Implement custom field naming strategies
-- [ ] Work with nested objects and collections
-- **Agent**: backend-developer
-- **Model**: claude-sonnet-4 (standard exercise)
-
-##### 2.8 Jackson Advanced Exercise [3 hours]
-
-- [ ] Create exercises/08-jackson-advanced/
-- [ ] Create custom serializers/deserializers
-- [ ] Implement polymorphic type handling
-- [ ] Add JSON Views for different representations
-- **Agent**: backend-developer
-- **Model**: opus-4.1
-
-##### 2.9 Security Implementation Exercise [4 hours]
-
-**Pre-task Research** (Critical - Use all tools):
-
-- [x] JWT best practices 2024 (Brave Search)
-- [x] Java 8 JWT libraries comparison (Context7: /auth0/java-jwt, /jwtk/jjwt)
-- [x] OAuth2 implementation patterns (Firecrawl OAuth2 docs)
-- [x] API Key management strategies
-- [x] Jersey security filter patterns
-- [x] OWASP REST Security guidelines (Firecrawl)
-- [x] Role-based access control patterns
-      **Implementation**:
-- [ ] Create exercises/09-security-implementation/
-- [ ] Implement authentication filters
-- [ ] Add role-based authorization
-- [ ] Create security test suite
-- **Agent**: backend-developer
-- **Model**: opus-4.1 (security complexity)
+- [ ] Create exercises/07-security-implementation/
+- [ ] **Trainees implement**: Basic Auth filter
+- [ ] **Trainees add**: Simple role checking
+- [ ] **Trainees test**: Protected endpoints
+- [ ] Provide security filter template
+- **Note**: Fits within "Security Implementation" (Day 2 PM)
+- **Model**: claude-sonnet-4
 
 ### PHASE 3: SHOWCASES, DOCUMENTATION & QUALITY
 
@@ -529,24 +499,15 @@ Can be done simultaneously by multiple agents after Phase 1 completion.
 
 #### Documentation & Support
 
-##### 2.10 Testing REST APIs Exercise [3 hours]
+##### 2.8 Comprehensive Exercise [90 min - Day 2 PM]
 
-- [ ] Create exercises/10-testing/
-- [ ] Write integration tests with REST Assured
-- [ ] Test error scenarios
-- [ ] Mock external dependencies
-- [ ] Create test data builders
-- **Agent**: backend-developer
+- [ ] Create exercises/08-comprehensive/
+- [ ] **Trainees build**: Complete REST API for a Todo application
+- [ ] **Combines**: CRUD, validation, JSON handling, basic security
+- [ ] **Trainees implement**: All concepts from Day 1 and 2
+- [ ] Provide detailed requirements and test suite
+- **Note**: Fits within "Comprehensive Exercise" (Day 2 PM)
 - **Model**: claude-sonnet-4
-
-##### 3.4 Final Comprehensive Exercise [4 hours]
-
-- [ ] Create exercises/11-final-project/
-- [ ] Build complete e-commerce REST API
-- [ ] Combine all learned concepts
-- [ ] Include test suite and documentation
-- **Agent**: Multiple models for comparison
-- **Models**: opus-4.1 vs o3 vs gemini-2.5-pro
 
 ##### 3.5 Instructor Materials [4 hours]
 

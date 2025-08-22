@@ -36,6 +36,12 @@ public class UserResource extends AbstractResource {
     private static final Map<Long, User> users = new ConcurrentHashMap<>();
     private static final AtomicLong idGenerator = new AtomicLong(1);
     
+    // Package-private method for test cleanup (only accessible from same package)
+    static void resetForTesting() {
+        users.clear();
+        idGenerator.set(1);
+    }
+    
     // Initialize with sample data
     static {
         User user1 = new User.Builder()

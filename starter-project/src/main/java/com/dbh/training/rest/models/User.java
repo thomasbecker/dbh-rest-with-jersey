@@ -1,31 +1,82 @@
 package com.dbh.training.rest.models;
 
+import java.time.LocalDateTime;
+
 /**
  * User entity representing a system user.
  * 
- * TODO: Exercise 03 - Add basic fields
- * TODO: Exercise 04b - Add validation annotations
- * TODO: Exercise 06 - Add Jackson annotations for JSON mapping
+ * Exercise 02: Complete this model with proper fields and methods
  */
 public class User {
     
-    // TODO: Add the following fields:
-    // - id (Long)
-    // - username (String) 
-    // - email (String)
-    // - firstName (String)
-    // - lastName (String)
-    // - password (String) - Note: Never expose in DTOs!
-    // - role (String or enum - consider USER, ADMIN, MODERATOR)
-    // - active (boolean)
-    // - createdAt (LocalDateTime)
-    // - updatedAt (LocalDateTime)
+    // Basic fields needed for Exercise 02
+    private Long id;
+    private String username;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private LocalDateTime createdAt;
     
-    // TODO: Generate constructors
+    // Default constructor (required for JSON deserialization)
+    public User() {}
     
-    // TODO: Generate getters and setters
+    // Getters and Setters (provided to save time)
+    public Long getId() { 
+        return id; 
+    }
     
-    // TODO: Override equals() and hashCode() based on id
+    public void setId(Long id) { 
+        this.id = id; 
+    }
     
-    // TODO: Override toString() for debugging (exclude password!)
+    public String getUsername() { 
+        return username; 
+    }
+    
+    public void setUsername(String username) { 
+        this.username = username; 
+    }
+    
+    public String getEmail() { 
+        return email; 
+    }
+    
+    public void setEmail(String email) { 
+        this.email = email; 
+    }
+    
+    public String getFirstName() { 
+        return firstName; 
+    }
+    
+    public void setFirstName(String firstName) { 
+        this.firstName = firstName; 
+    }
+    
+    public String getLastName() { 
+        return lastName; 
+    }
+    
+    public void setLastName(String lastName) { 
+        this.lastName = lastName; 
+    }
+    
+    public LocalDateTime getCreatedAt() { 
+        return createdAt; 
+    }
+    
+    public void setCreatedAt(LocalDateTime createdAt) { 
+        this.createdAt = createdAt; 
+    }
+    
+    // TODO: Exercise 03 - Add Bean Validation annotations:
+    // - username: @NotBlank, @Size(min = 3, max = 20)
+    // - email: @NotBlank, @Email
+    // - firstName: @NotBlank
+    // - lastName: @NotBlank
+    
+    // TODO: Exercise 05 - Add Jackson annotations:
+    // - @JsonIgnore for sensitive fields
+    // - @JsonProperty for custom naming
+    // - @JsonFormat for date formatting
 }
