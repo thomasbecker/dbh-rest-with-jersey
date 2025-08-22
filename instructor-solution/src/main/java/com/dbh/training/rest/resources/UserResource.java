@@ -27,6 +27,7 @@ public class UserResource extends AbstractResource {
     private static final AtomicLong idGenerator = new AtomicLong(1);
     
     // Package-private method for test cleanup (only accessible from same package)
+    // This pattern prevents production code misuse while allowing test access
     static void resetForTesting() {
         users.clear();
         idGenerator.set(1);
@@ -50,7 +51,7 @@ public class UserResource extends AbstractResource {
     public Response getUserById(@PathParam("id") Long id) {
         User user = users.get(id);
         if (user == null) {
-            return Response.status(404).build();
+            return Response.status(404).entity("User not found").build();
         }
         return ok(user);
     }
@@ -70,11 +71,9 @@ public class UserResource extends AbstractResource {
         // Store the user
         users.put(id, user);
         
-        // Create Location header
-        URI location = URI.create("/api/users/" + id);
-        
         // Return 201 Created with location header and entity
-        return Response.created(location).entity(user).build();
+        // Using helper method from AbstractResource for dynamic URI building
+        return created(user, id);
     }
     
     /**
@@ -86,7 +85,7 @@ public class UserResource extends AbstractResource {
     public Response updateUser(@PathParam("id") Long id, User user) {
         // Check if user exists
         if (!users.containsKey(id)) {
-            return Response.status(404).build();
+            return Response.status(404).entity("User not found").build();
         }
         
         // Ensure ID matches
@@ -107,8 +106,9 @@ public class UserResource extends AbstractResource {
     public Response deleteUser(@PathParam("id") Long id) {
         User removed = users.remove(id);
         if (removed == null) {
-            return Response.status(404).build();
+            return Response.status(404).entity("User not found").build();
         }
-        return Response.noContent().build();
+        // Using helper method from AbstractResource
+        return noContent();
     }
 }

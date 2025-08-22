@@ -30,6 +30,7 @@ public class UserResource extends AbstractResource {
     private static final AtomicLong idGenerator = new AtomicLong(1);
     
     // Package-private method for test cleanup (only accessible from same package)
+    // This pattern prevents production code misuse while allowing test access
     static void resetForTesting() {
         users.clear();
         idGenerator.set(1);
@@ -41,6 +42,7 @@ public class UserResource extends AbstractResource {
      */
     public Response getAllUsers() {
         // TODO: Add annotation and implement
+        // Hint: Use the ok() helper method from AbstractResource
         return Response.status(501).entity("Not implemented yet").build();
     }
     
@@ -50,6 +52,8 @@ public class UserResource extends AbstractResource {
      */
     public Response getUserById(Long id) {
         // TODO: Add annotations and implement
+        // Hint: Return 404 with message "User not found" if user doesn't exist
+        // Hint: Use the ok() helper method for successful response
         return Response.status(501).entity("Not implemented yet").build();
     }
     
@@ -60,6 +64,9 @@ public class UserResource extends AbstractResource {
      */
     public Response createUser(User user) {
         // TODO: Add annotation and implement
+        // Hint: Use idGenerator.getAndIncrement() for ID
+        // Hint: Set user.setCreatedAt(LocalDateTime.now())
+        // Hint: Use the created(entity, id) helper method from AbstractResource
         return Response.status(501).entity("Not implemented yet").build();
     }
     
@@ -69,6 +76,8 @@ public class UserResource extends AbstractResource {
      */
     public Response updateUser(Long id, User user) {
         // TODO: Add annotations and implement
+        // Hint: Return 404 with message "User not found" if user doesn't exist
+        // Hint: Use the ok() helper method for successful response
         return Response.status(501).entity("Not implemented yet").build();
     }
     
@@ -78,6 +87,8 @@ public class UserResource extends AbstractResource {
      */
     public Response deleteUser(Long id) {
         // TODO: Add annotations and implement
+        // Hint: Return 404 with message "User not found" if user doesn't exist
+        // Hint: Use the noContent() helper method for successful deletion
         return Response.status(501).entity("Not implemented yet").build();
     }
 }

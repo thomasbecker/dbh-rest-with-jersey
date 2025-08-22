@@ -110,7 +110,7 @@ public Response getAllUsers() {
 
 📚 [Jersey Docs: @PathParam](https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/jaxrs-resources.html#d0e2271)
 
-💡 **Hint:** Check if user exists, return 404 if not
+💡 **Hint:** Check if user exists, return 404 with message
 
 <!-- pause -->
 
@@ -125,14 +125,15 @@ public Response getUserById(@PathParam("id") Long id) {
 ```java
     User user = users.get(id);
     if (user == null) {
-        return Response.status(404).build();
+        return Response.status(404)
+                   .entity("User not found").build();
     }
 ```
 
 <!-- pause -->
 
 ```java
-    return ok(user);
+    return ok(user);  // Using AbstractResource helper
 }
 ```
 
@@ -170,9 +171,9 @@ public Response createUser(User user) {
 
 ## Task 3: POST Create User (Part 2)
 
-📚 [Jersey Docs: Response.created()](https://docs.oracle.com/javaee/7/api/javax/ws/rs/core/Response.html#created-java.net.URI-)
+📚 [Jersey Docs: AbstractResource Helper Methods]
 
-💡 **Hint:** Don't forget the Location header!
+💡 **Hint:** Use the created() helper method!
 
 <!-- pause -->
 
@@ -184,16 +185,9 @@ public Response createUser(User user) {
 <!-- pause -->
 
 ```java
-    // Create Location header
-    URI location = URI.create("/api/users/" + id);
-```
-
-<!-- pause -->
-
-```java
-    // Return 201 with Location
-    return Response.created(location)
-                   .entity(user).build();
+    // Return 201 with Location header
+    // AbstractResource helper builds dynamic URI
+    return created(user, id);
 }
 ```
 
@@ -218,7 +212,8 @@ public Response updateUser(
 
 ```java
     if (!users.containsKey(id)) {
-        return Response.status(404).build();
+        return Response.status(404)
+                   .entity("User not found").build();
     }
 ```
 
@@ -257,9 +252,10 @@ public Response deleteUser(@PathParam("id") Long id) {
 
 ```java
     if (removed == null) {
-        return Response.status(404).build();
+        return Response.status(404)
+                   .entity("User not found").build();
     }
-    return Response.noContent().build();  // 204
+    return noContent();  // 204 - Using helper
 }
 ```
 

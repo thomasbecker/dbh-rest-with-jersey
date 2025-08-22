@@ -47,7 +47,7 @@ https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/jaxrs-resou
 - Return: 201 Created with Location header
 - Response should include the created user
 
-**Tip:** Check how AbstractResource provides helper methods
+**Tip:** Use the `created(entity, id)` helper method from AbstractResource for proper Location header generation
 
 ### Task 4: Implement PUT Operation (10 minutes)
 
@@ -119,7 +119,8 @@ UserResourceTest
 - Use `AtomicLong` for ID generation
 - Remember to set proper `@Produces` and `@Consumes` annotations
 - Return `Response` objects for better control over status codes
-- Use `Response.status(404).build()` for not found cases
+- For 404 errors, include a message: `Response.status(404).entity("User not found").build()`
+- Use AbstractResource helper methods: `ok()`, `created()`, `noContent()`
 
 ## Bonus Tasks (if you finish early)
 
