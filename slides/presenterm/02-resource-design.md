@@ -13,17 +13,17 @@ date: 2025-08-26
 <!--
 speaker_note: |
   MODULE 2 INTRODUCTION (2 minutes)
-  
+
   • Transition from Module 1:
     - "Module 1 covered REST fundamentals"
     - "Now: advanced resource design"
     - "Real-world complexity"
-  
+
   • Key message:
     - Beyond simple CRUD
     - Handle complex domains
     - Pragmatic patterns
-  
+
   • What we'll cover:
     - Virtual & computed resources
     - Complex URI patterns
@@ -38,12 +38,14 @@ speaker_note: |
 ## Resources ≠ Database Tables
 
 ### Virtual & Computed Resources
+
 - Search results → `/search?q=rest`
 - Reports → `/analytics/monthly`
 - Aggregations → `/statistics/user-activity`
 - Processes → `/jobs/import-456`
 
 ### Cross-Domain Resources
+
 - Dashboard views → `/dashboards/executive`
 - Merged data → `/customer-360/123`
 - Calculated metrics → `/kpis/revenue/ytd`
@@ -53,23 +55,23 @@ speaker_note: |
 <!--
 speaker_note: |
   BEYOND BASIC RESOURCES (4 minutes)
-  
+
   • Module 1 covered basics, now go deeper:
     - Resources can be virtual
     - Can span multiple tables
     - Can be external APIs
     - Can be computed on-demand
-  
+
   • Virtual resources:
     - Search: dynamic generation
     - Reports: aggregated data
     - Analytics: calculated metrics
-  
+
   • Cross-domain:
     - Customer-360: joins many tables
     - Dashboard: multiple data sources
     - KPIs: complex calculations
-  
+
   • Ask audience:
     - "What computed resources in your domain?"
     - "Any cross-domain views needed?"
@@ -82,6 +84,7 @@ speaker_note: |
 ## Beyond Simple Hierarchies
 
 ### Alternate Access Paths
+
 ```http
 # Primary path
 GET /courses/CS101/students
@@ -93,6 +96,7 @@ GET /students?course=CS101
 ```
 
 ### Composite Resources
+
 ```http
 # Combining multiple entities
 GET /orders/123/invoice      # Generated from order + customer + items
@@ -100,35 +104,36 @@ GET /users/456/profile       # User + preferences + stats
 ```
 
 ### Filtering vs Sub-Resources
+
 ```http
 # Sub-resource (strong ownership)
-GET /users/123/addresses     
+GET /users/123/addresses
 
 # Filtered collection (weak relationship)
-GET /addresses?user=123      
+GET /addresses?user=123
 ```
 
 <!--
 speaker_note: |
   ADVANCED URI PATTERNS (5 minutes)
-  
+
   • Module 1 covered basics, now advanced:
-  
+
   • Alternate paths:
     - Same data, different access
     - Choose based on common use
     - OK to have both!
-  
+
   • Composite resources:
     - Invoice: computed from multiple
     - Profile: aggregated view
     - Dashboard: cross-domain data
-  
+
   • When to use sub-resources:
     - Strong ownership (user→addresses)
     - Cascade delete makes sense
     - Clear parent-child
-  
+
   • When to use filtering:
     - Weak relationship
     - Independent lifecycle
@@ -151,10 +156,12 @@ speaker_note: |
 ```
 
 ## Keep It Shallow
+
 ❌ Too deep: `/a/b/c/d/e/f/g`
 ✅ Better: `/resources/123/subresources`
 
 ## Use Query Parameters for Filtering
+
 ```http
 GET /courses?department=CS&level=graduate&year=2024
 ```
@@ -162,22 +169,22 @@ GET /courses?department=CS&level=graduate&year=2024
 <!--
 speaker_note: |
   URI DESIGN PATTERNS (5 minutes)
-  
+
   • Hierarchy example:
     - Natural parent-child relationships
     - Each level is a valid resource
     - Can GET at any level
-  
+
   • Depth guideline:
     - Max 3-4 levels typically
     - Deeper = harder to use
     - Consider flattening
-  
+
   • Query parameters:
     - Filtering, not identification
     - Optional parameters
     - Multiple filters combine
-  
+
   • Common questions:
     - "When to nest vs. top-level?"
     - Clear ownership = nest
@@ -189,6 +196,7 @@ speaker_note: |
 # Collection vs Item Resources
 
 ## Collection Resources
+
 ```http
 GET /books           # Get all books
 POST /books          # Create new book
@@ -196,6 +204,7 @@ DELETE /books        # ⚠️ Delete ALL (rare)
 ```
 
 ## Item Resources
+
 ```http
 GET /books/123       # Get specific book
 PUT /books/123       # Update book
@@ -204,6 +213,7 @@ DELETE /books/123    # Delete book
 ```
 
 ## Sub-Resources
+
 ```http
 GET /books/123/chapters      # Chapters of book 123
 POST /books/123/chapters     # Add chapter
@@ -213,23 +223,23 @@ GET /books/123/chapters/1    # Specific chapter
 <!--
 speaker_note: |
   COLLECTIONS VS ITEMS (4 minutes)
-  
+
   • Collection patterns:
     - GET: list with pagination
     - POST: create new item
     - DELETE: rarely implemented
-  
+
   • Item patterns:
     - GET: single resource
     - PUT: full replacement
     - PATCH: partial update
     - DELETE: remove resource
-  
+
   • Sub-resources:
     - Clear ownership relationship
     - Parent must exist
     - Deletion cascades
-  
+
   • Design question:
     - /reviews vs /books/123/reviews?
     - Depends on usage patterns
@@ -238,12 +248,12 @@ speaker_note: |
 
 <!-- end_slide -->
 
-
 # Stateless Design Patterns 🔄
 
 ## Handling Complex Workflows Statelessly
 
 ### Multi-Step Processes
+
 ```http
 # Each step self-contained
 POST /orders/draft
@@ -260,36 +270,41 @@ POST /orders
 ```
 
 ### Pagination State
-```http
-# Cursor-based (stateless)
-GET /users?cursor=eyJpZCI6MTIzfQ==&limit=20
 
-# Offset-based (stateless but less stable)
+```http
+# Page-based (common, simple)
+GET /users?page=3&limit=20
+
+# Offset-based (flexible positioning)
 GET /users?offset=40&limit=20
+
+# Cursor-based (most stable)
+GET /users?cursor=eyJpZCI6MTIzfQ==&limit=20
 ```
 
 <!--
 speaker_note: |
   STATELESS PATTERNS (5 minutes)
-  
+
   • Module 1 covered basics, now patterns:
-  
+
   • Multi-step workflows:
     - Draft pattern for complex flows
     - Each step has all context
     - Draft ID links steps
     - No server session needed
-  
+
   • Pagination strategies:
-    - Cursor: encodes position
-    - Stable across inserts/deletes
-    - Offset: simple but unstable
-  
+    - Page: simplest, page=2&limit=20
+    - Offset: flexible, skip N records
+    - Cursor: most stable, encodes position
+    - Trade-offs: simplicity vs stability
+
   • Other patterns:
     - Idempotency keys for retries
     - Request IDs for tracking
     - Correlation IDs for distributed
-  
+
   • Key principle:
     - Client owns workflow state
     - Server owns resource state
@@ -302,6 +317,7 @@ speaker_note: |
 ## Scenario: E-Learning Platform
 
 Design resources for:
+
 - Courses and their content
 - Student enrollments
 - Assignments and submissions
@@ -311,6 +327,7 @@ Design resources for:
 **Work in pairs - 5 minutes**
 
 Consider:
+
 - Resource hierarchy
 - Relationships
 - URI patterns
@@ -321,14 +338,20 @@ Consider:
 <!--
 speaker_note: |
   EXERCISE SETUP (1 minute)
-  
+
   • Form pairs/small groups
   • Give them 5 minutes
   • Walk around, help stuck groups
+  
+  • Clarify if asked:
+    - Enrollments: student ↔ course registrations
+    - Assignments: homework/tasks given by instructor
+    - Submissions: student's completed work for assignment
+  
   • Common struggles:
-    - Enrollment: separate resource?
-    - Submissions: under assignments or students?
-    - Forums: nested or top-level?
+    - Enrollment: separate resource? (yes, junction)
+    - Submissions: under assignments or students? (both valid)
+    - Forums: nested or top-level? (depends on scope)
 -->
 
 <!-- end_slide -->
@@ -343,7 +366,7 @@ GET    /courses
 GET    /courses/CS101
 POST   /courses
 
-# Course Content  
+# Course Content
 GET    /courses/CS101/modules
 GET    /courses/CS101/modules/1/lessons
 
@@ -364,22 +387,22 @@ GET    /students/123/submissions
 <!--
 speaker_note: |
   SOLUTION DISCUSSION (7 minutes)
-  
+
   • Review their solutions first
   • Common approaches:
     - Most nest under courses
     - Enrollment debates
-  
+
   • Key insights:
     - Enrollments as resources
     - Multiple access paths OK
     - Submissions under assignments
-  
+
   • Alternative views:
     - /students/123/courses (enrolled)
     - /assignments/456/submissions
     - /submissions?student=123
-  
+
   • All valid! Depends on:
     - Primary use cases
     - Query patterns
@@ -391,6 +414,7 @@ speaker_note: |
 # Advanced Resource Patterns
 
 ## Computed Resources
+
 ```http
 GET /reports/sales/2024/summary
 GET /analytics/user-activity/daily
@@ -398,10 +422,15 @@ GET /statistics/system/current
 ```
 
 ## Action Resources (when needed)
+
 ```http
-# Password reset as a resource
+# Password reset as a resource (user-initiated)
 POST /password-resets
 { "email": "user@example.com" }
+
+# Or admin-initiated for specific user
+POST /users/123/reset-password
+{ "reason": "Support request" }
 
 # Export job as a resource
 POST /exports
@@ -410,9 +439,16 @@ GET  /exports/job-123/result
 ```
 
 ## Relationship Resources
+
 ```http
 # Friendship as a resource
 POST   /friendships
+{
+  "from_user": 123,
+  "to_user": 456,
+  "status": "pending"
+}
+
 DELETE /friendships/456
 GET    /users/123/friendships
 ```
@@ -420,22 +456,22 @@ GET    /users/123/friendships
 <!--
 speaker_note: |
   ADVANCED PATTERNS (5 minutes)
-  
+
   • Computed resources:
     - Don't need storage
     - Calculate on demand
     - Can cache results
-  
+
   • Action resources:
     - Sometimes actions = resources
     - Track state of operation
     - Better than RPC-style
-  
+
   • Relationship resources:
     - Many-to-many relationships
     - Contain relationship metadata
     - Examples: likes, follows, tags
-  
+
   • Key principle:
     - "Can I model this as a resource?"
     - Usually answer is yes!
@@ -447,6 +483,7 @@ speaker_note: |
 # Resource Representation Patterns
 
 ## Sparse Fieldsets
+
 ```http
 # Client requests specific fields only
 GET /users/123?fields=name,email,avatar
@@ -460,6 +497,7 @@ GET /users/123?fields=name,email,avatar
 ```
 
 ## Embedded Resources
+
 ```http
 # Expand related resources inline
 GET /orders/789?expand=customer,items.product
@@ -484,24 +522,24 @@ GET /orders/789?expand=customer,items.product
 <!--
 speaker_note: |
   REPRESENTATION PATTERNS (4 minutes)
-  
+
   • Sparse fieldsets:
     - Reduce bandwidth
     - Client-driven optimization
     - Similar to GraphQL flexibility
     - Implementation complexity
-  
+
   • Embedded resources:
     - Reduce round trips
     - expand parameter pattern
     - Can nest expansions
     - Alternative to HATEOAS
-  
+
   • Trade-offs:
     - Flexibility vs caching
     - Complexity vs performance
     - Standard vs custom
-  
+
   • Best practice:
     - Start simple
     - Add patterns as needed
@@ -513,18 +551,23 @@ speaker_note: |
 # Resource State vs Application State
 
 ## Resource State
+
 **Data stored on the server**
+
 - User profiles
-- Order details  
+- Order details
 - Product inventory
 
 ## Application State
+
 **Client's current position in workflow**
+
 - Current page
 - Form progress
 - Shopping cart contents (sometimes)
 
 ### RESTful Approach:
+
 - Resource state: on server
 - Application state: on client
 - Transfer state with each request
@@ -539,21 +582,21 @@ X-Cart-Items: 123,456,789
 <!--
 speaker_note: |
   STATE MANAGEMENT (4 minutes)
-  
+
   • Distinction important:
     - Resource = server data
     - Application = client journey
-  
+
   • Shopping cart example:
     - Can be resource (saved cart)
     - Can be client state (session)
     - Depends on requirements
-  
+
   • Benefits of separation:
     - Server simplicity
     - Client flexibility
     - Better scalability
-  
+
   • Practical tip:
     - Long-lived = resource
     - Temporary = client state
@@ -570,15 +613,17 @@ speaker_note: |
 **Need**: Transfer money between accounts
 
 ❌ **RPC Style**:
+
 ```http
 POST /transferMoney
 { "from": "ACC1", "to": "ACC2", "amount": 100 }
 ```
 
 ✅ **Resource Style**:
+
 ```http
 POST /transactions
-{ 
+{
   "type": "transfer",
   "from_account": "ACC1",
   "to_account": "ACC2",
@@ -604,22 +649,22 @@ POST /batch
 <!--
 speaker_note: |
   DESIGN CHALLENGES (5 minutes)
-  
+
   • Complex operations:
     - Think "what's the resource?"
     - Transaction IS a resource
     - Has state, can query
-  
+
   • Bulk operations:
     - No perfect REST solution
     - Pragmatic approaches OK
     - Document clearly
-  
+
   • Other challenges:
     - Real-time updates → WebSockets
     - File uploads → multipart/form-data
     - Long operations → async + polling
-  
+
   • Remember:
     - REST is guidelines
     - Pragmatism over purity
@@ -633,6 +678,7 @@ speaker_note: |
 ## Your Task: Design a Food Delivery API
 
 Requirements:
+
 - Browse restaurants and menus
 - Shopping cart management
 - Place and track orders
@@ -642,6 +688,7 @@ Requirements:
 **10 minutes** - Design the main resources and endpoints
 
 Consider:
+
 - What are the resources?
 - How do they relate?
 - What about the ordering workflow?
@@ -650,16 +697,16 @@ Consider:
 <!--
 speaker_note: |
   MAJOR EXERCISE (2 minutes setup)
-  
+
   • This is a big exercise
   • Tests everything learned
   • Let them struggle a bit
-  
+
   • Common questions:
     - Cart: resource or client state?
     - Payment: separate service?
     - Tracking: REST or WebSocket?
-  
+
   • No perfect answer!
   • Multiple valid approaches
   • Focus on reasoning
@@ -702,24 +749,24 @@ WS   /orders/789/live      # WebSocket for real-time
 <!--
 speaker_note: |
   SOLUTION REVIEW (8 minutes)
-  
+
   • Review participant solutions
   • Common patterns emerge:
     - Most model cart as resource
     - Orders separate from cart
     - Tracking challenges
-  
+
   • Key decisions explained:
     - Cart as resource: persistence
     - Order immutable once placed
     - Status vs tracking separation
     - WebSocket for real-time
-  
+
   • Alternative approaches:
     - Cart in client only
     - Payments as sub-resource
     - Driver as separate resource
-  
+
   • Discussion points:
     - Why these choices?
     - Trade-offs?
@@ -728,22 +775,24 @@ speaker_note: |
 
 <!-- end_slide -->
 
-
 # Key Takeaways 🎯
 
 ## Advanced Resource Design
 
 1. **Resources Beyond Tables**
+
    - Virtual & computed resources
    - Cross-domain aggregations
    - Process resources
 
 2. **Flexible Access Patterns**
+
    - Multiple paths to same data
    - Composite resources
    - Sparse fieldsets & expansion
 
 3. **Stateless Workflows**
+
    - Draft pattern for multi-step
    - Cursor-based pagination
    - Client owns workflow state
@@ -756,23 +805,23 @@ speaker_note: |
 <!--
 speaker_note: |
   MODULE SUMMARY (3 minutes)
-  
+
   • Reinforce key concepts:
     - Resources central to REST
     - Good design = good API
     - Patterns provide consistency
-  
+
   • Common mistakes to avoid:
     - RPC thinking
     - Stateful design
     - Over-nesting
     - Verb obsession
-  
+
   • Moving forward:
     - These principles apply everywhere
     - Jersey makes it easy
     - Practice makes perfect
-  
+
   • Questions before break?
   • Next: Jersey setup
 -->
@@ -784,7 +833,9 @@ speaker_note: |
 ## Questions?
 
 ### Coming Next:
+
 **Module 3: Jersey Framework Setup**
+
 - Project configuration
 - JAX-RS basics
 - First Jersey endpoint
@@ -794,21 +845,21 @@ speaker_note: |
 <!--
 speaker_note: |
   Q&A AND BREAK (10 minutes)
-  
+
   • Common questions:
     - Real-world compromises?
     - Legacy system migration?
     - Microservices patterns?
-  
+
   • If time permits:
     - Show real API examples
     - GitHub, Twitter, Stripe
-  
+
   • Break logistics:
     - 10 minutes
     - Back at [specific time]
     - Jersey setup next
-  
+
   • Prep for Module 3:
     - Ensure Java 8 ready
     - IDE opened
