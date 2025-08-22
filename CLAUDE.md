@@ -134,6 +134,41 @@ cd base-project
 curl -X GET http://localhost:8080/api/users
 ```
 
+## Solution Management
+
+Solutions for each exercise are maintained on separate branches for clean progression:
+
+- `main` - Starter project with skeleton code and tests
+- `solution/02-crud` - Complete Exercise 02 (Jersey CRUD)
+- `solution/03-validation` - Complete Exercise 03 (Bean Validation)
+- `solution/04-versioning` - Complete Exercise 04 (API Versioning)
+- `solution/05-jackson` - Complete Exercise 05 (Jackson Basics)
+- `solution/06-jackson-advanced` - Complete Exercise 06 (Jackson Advanced)
+- `solution/07-security` - Complete Exercise 07 (Security)
+- `solution/08-final` - Complete Exercise 08 (Final Project)
+
+### Working with Solution Branches
+
+```bash
+# Switch to a solution branch
+git checkout solution/02-crud
+
+# Show diff between exercises
+git diff solution/02-crud..solution/03-validation
+
+# Show what changed in an exercise
+git diff main..solution/02-crud
+
+# Cherry-pick specific changes if needed
+git cherry-pick <commit-hash>
+```
+
+### Important Notes
+- Each solution branch builds on the previous one
+- Always test that solutions work before committing
+- Keep branches in sync if refactoring exercises
+- Use descriptive commit messages for each solution step
+
 ## Java 8 Compatibility Checklist
 
 - [ ] No var keyword
