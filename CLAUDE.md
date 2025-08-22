@@ -145,3 +145,4 @@ curl -X GET http://localhost:8080/api/users
 - [ ] Lambda expressions OK
 - [ ] Stream API OK
 - no co-authored-by stuff when doing commits
+- remember that this repo will be split into multiple smaller repos later.
