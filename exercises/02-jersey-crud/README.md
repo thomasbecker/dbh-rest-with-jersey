@@ -25,6 +25,7 @@ Open `src/main/java/com/dbh/training/rest/models/User.java` and familiarize your
 In `src/main/java/com/dbh/training/rest/resources/UserResource.java`:
 
 **First, add necessary class-level annotations for:**
+
 - Resource path mapping
 - Content type handling (JSON)
 
@@ -39,6 +40,7 @@ https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/jaxrs-resou
 ### Task 3: Implement POST Operation (10 minutes)
 
 **POST /users**
+
 - Accept: User JSON (without ID)
 - Generate unique ID for the user
 - Set creation timestamp
@@ -50,6 +52,7 @@ https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/jaxrs-resou
 ### Task 4: Implement PUT Operation (10 minutes)
 
 **PUT /users/{id}**
+
 - Accept: Complete User JSON
 - Update existing user
 - Return: 200 OK with updated user or 404 if not found
@@ -57,6 +60,7 @@ https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/jaxrs-resou
 ### Task 5: Implement DELETE Operation (5 minutes)
 
 **DELETE /users/{id}**
+
 - Remove user from storage
 - Return: 204 No Content if deleted, 404 if not found
 
@@ -78,12 +82,14 @@ The tests are already written using REST Assured. Run them to verify your implem
 ### Important: Test Independence
 
 Each test is completely independent:
+
 - Tests create their own test data using a helper method
 - `@BeforeEach` calls `UserResource.resetForTesting()` to clean state
 - Tests can run in any order
 - No test depends on data from another test
 
 The `resetForTesting()` method is package-private (no access modifier), meaning:
+
 - Only accessible from the same package (tests are in same package)
 - Not exposed in the public API
 - Common pattern for test utilities
@@ -147,10 +153,12 @@ UserResourceTest
 ## Helpful Resources
 
 **JAX-RS Annotations:**
+
 - [Jersey Resources Documentation](https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/jaxrs-resources.html)
 - [JAX-RS Quick Reference](https://docs.oracle.com/javaee/7/tutorial/jaxrs002.htm)
 
 **Response Building:**
+
 - [Response class JavaDoc](https://docs.oracle.com/javaee/7/api/javax/ws/rs/core/Response.html)
 - Common patterns: `Response.ok()`, `Response.created()`, `Response.noContent()`, `Response.status(404)`
 
