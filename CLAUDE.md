@@ -134,40 +134,46 @@ cd base-project
 curl -X GET http://localhost:8080/api/users
 ```
 
-## Solution Management
+## Solution Management Strategy
 
-Solutions for each exercise are maintained on separate branches for clean progression:
+### Directory Structure
+- `/starter-project/` - Always contains skeleton code with TODOs for attendees to complete
+- `/instructor-solution/` - Contains complete solutions for instructor reference
 
-- `main` - Starter project with skeleton code and tests
-- `solution/02-crud` - Complete Exercise 02 (Jersey CRUD)
-- `solution/03-validation` - Complete Exercise 03 (Bean Validation)
-- `solution/04-versioning` - Complete Exercise 04 (API Versioning)
-- `solution/05-jackson` - Complete Exercise 05 (Jackson Basics)
-- `solution/06-jackson-advanced` - Complete Exercise 06 (Jackson Advanced)
-- `solution/07-security` - Complete Exercise 07 (Security)
-- `solution/08-final` - Complete Exercise 08 (Final Project)
+### Branch Strategy
 
-### Working with Solution Branches
+**Main Branch:**
+- Contains the FIRST complete solution for each file in `/instructor-solution/`
+- Example: `UserResource.java` first appears in Exercise 02, so its Exercise 02 solution lives in `/instructor-solution/` on main
+- Example: If `ValidationExceptionMapper.java` first appears in Exercise 03, its Exercise 03 solution also lives on main
 
+**Solution Branches:**
+- Only created when existing files need MODIFICATIONS in later exercises
+- Branch naming: `solution/03-validation`, `solution/04-versioning`, etc.
+- Example: `solution/03-validation` contains updated `UserResource.java` with validation added
+- Example: `solution/04-versioning` contains updated `UserResource.java` with versioning added
+- New files introduced in that exercise still go to main branch first
+
+### Key Principles
+1. Each file's initial solution goes in main branch
+2. Branches only for exercises that modify existing files
+3. Starter-project always has skeletons/TODOs
+4. Instructor-solution accumulates all "first appearance" solutions on main
+5. Branches only contain delta changes to existing files
+6. Less duplication, clear progression
+
+### Instructor Workflow
 ```bash
-# Switch to a solution branch
-git checkout solution/02-crud
+# Show initial solution (from main)
+cat instructor-solution/src/main/java/com/dbh/training/rest/resources/UserResource.java
 
-# Show diff between exercises
-git diff solution/02-crud..solution/03-validation
+# Show how file evolves in Exercise 03
+git checkout solution/03-validation
+git diff main..HEAD -- instructor-solution/src/main/java/com/dbh/training/rest/resources/UserResource.java
 
-# Show what changed in an exercise
-git diff main..solution/02-crud
-
-# Cherry-pick specific changes if needed
-git cherry-pick <commit-hash>
+# Return to main for new files
+git checkout main
 ```
-
-### Important Notes
-- Each solution branch builds on the previous one
-- Always test that solutions work before committing
-- Keep branches in sync if refactoring exercises
-- Use descriptive commit messages for each solution step
 
 ## Java 8 Compatibility Checklist
 
@@ -182,3 +188,4 @@ git cherry-pick <commit-hash>
 - no co-authored-by stuff when doing commits
 - remember that this repo will be split into multiple smaller repos later.
 - Remember how to run gradle and the tests with the correct java version, etc.
+- no auto commits. I want to commit manually

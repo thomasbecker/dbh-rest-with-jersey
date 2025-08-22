@@ -93,7 +93,6 @@ public class UserResource extends AbstractResource {
             .filter(u -> active == null || u.isActive() == active)
             .sorted(Comparator.comparing(User::getId))
             .collect(Collectors.toList());
-        
         // Paginate
         int start = page * size;
         int end = Math.min(start + size, filteredUsers.size());

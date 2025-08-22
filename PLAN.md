@@ -260,6 +260,42 @@ organization and easier sharing with participants.
    - Follow-up questions
    - Real-world implementation
 
+## Solution Management Strategy
+
+### Directory Structure
+- `/starter-project/` - Skeleton code with TODOs for attendees
+- `/instructor-solution/` - Complete solutions for instructor
+
+### Branch Strategy
+
+**Main Branch:**
+- Contains the FIRST complete solution for each file
+- Example: `UserResource.java` (Exercise 02) → first solution on main
+- Example: `ValidationExceptionMapper.java` (Exercise 03) → first solution on main
+- All "first appearance" solutions accumulate in `/instructor-solution/` on main
+
+**Solution Branches:**
+- Only for exercises that MODIFY existing files
+- `solution/03-validation` - UserResource with validation added
+- `solution/04-versioning` - UserResource with versioning added
+- `solution/05-jackson` - UserResource with Jackson features
+- `solution/06-jackson-advanced` - Advanced Jackson modifications
+- `solution/07-security` - Security additions
+- `solution/08-final` - Final project modifications
+
+### Instructor Workflow
+1. Show skeleton in `/starter-project/`
+2. Live code or show solution from `/instructor-solution/`
+3. For modified files, checkout solution branch
+4. Use `git diff` to show evolution
+5. New files always shown from main first
+
+### Maintenance Notes
+- Minimize duplication
+- Main branch is always complete and runnable
+- Branches only contain deltas
+- Test each branch before training
+
 ## Risk Mitigation
 
 1. **Technical Risks**
