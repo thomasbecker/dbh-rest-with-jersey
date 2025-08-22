@@ -1,5 +1,18 @@
 # Instructor Notes for Exercise 02
 
+## Presentation Slides
+
+Present the exercise using:
+```bash
+presenterm ../../slides/presenterm/02-jersey-crud.md
+```
+
+The slides cover:
+- Step-by-step implementation guide
+- Common pitfalls
+- Testing strategies
+- Bonus challenges
+
 ## Important Setup Requirements
 
 ### Java Version

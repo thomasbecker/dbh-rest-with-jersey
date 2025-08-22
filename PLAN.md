@@ -331,12 +331,72 @@ organization and easier sharing with participants.
 ```
 dbh-rest-with-jackson/
 ├── starter-project/       # Skeleton with infrastructure only (participants get this)
-├── exercises/             # Individual exercise modules (01-10)  
+├── exercises/             # Individual exercise modules (01-10)
+│   └── XX-name/
+│       ├── slides.md      # Exercise-specific slides (stored in /slides/)
+│       ├── README.md      # Written instructions for students
+│       └── INSTRUCTOR_NOTES.md  # Teaching notes
 ├── instructor-solution/   # Complete implementation (instructor reference)
 ├── showcases/           # Demo-only materials
-├── slides/             # Presentation materials
+├── slides/             # All presentation materials
+│   └── presenterm/     # Presenterm slide files
+│       ├── 01-rest-basics.md
+│       ├── 02-jersey-crud.md
+│       └── ...
 └── instructor-guide/   # Teaching notes and timing
 ```
+
+### Exercise Structure Standards
+
+Based on the successful Exercise 02 pattern, all exercises should follow this structure:
+
+#### README Location and Structure
+- **MUST stay in exercise folder** (e.g., `/exercises/02-jersey-crud/README.md`)
+- Serves as self-study reference and backup instructions
+- Contains comprehensive step-by-step instructions with:
+  - Clear time allocations and objectives
+  - Prerequisites and background
+  - Numbered tasks with time estimates
+  - TDD workflow explanation
+  - Running tests section with exact commands
+  - Expected test output examples
+  - Technical hints and tips
+  - Bonus tasks for fast finishers
+  - Documentation links and resources
+  - Common mistakes with ❌ emoji
+  - Solution checkpoint checklist
+  - "Need Help?" section
+
+#### Slide Location and Structure
+- **Slides go in** `/slides/presenterm/XX-exercise-name.md`
+- Used for live instructor-led presentation
+- Screen-friendly with multiple short slides
+- Each task slide follows pattern:
+  - Documentation link (📚 emoji)
+  - Hint (💡 emoji)
+  - `<!-- pause -->` for reveal
+  - Code example
+  - Expected result
+- Include checkpoint slides at 20 min, 40 min
+- Use `<!-- end_slide -->` to keep slides screen-sized
+- Progressive revelation for better flow
+- Speaker notes for instructor guidance
+
+#### Alignment Requirements
+- Tasks in slides MUST match README tasks exactly
+- Same numbering, same time allocations
+- Identical bonus tasks
+- Consistent test commands
+- Both reference same documentation links
+
+### Exercise Slide Guidelines
+
+Each exercise gets concise slides (stored in `/slides/presenterm/XX-exercise-name.md`):
+- Keep slides short - must fit on screen
+- Focus on code examples and key concepts
+- Include checkpoints at 20 and 40 minutes
+- Add speaker notes for instructor guidance
+- Run with: `presenterm slides/presenterm/XX-exercise-name.md`
 
 ### AI Model Strategy (Anthropic Max Plan)
 
